@@ -17,3 +17,4 @@ that we are satisfied with each others work
 * Ensuring that we try to get it done by the estimate date 
 * Each task involves around completing sequence diagrams, class diagrams and design rationale
   ___
+  I,Kenny accept this WBA
