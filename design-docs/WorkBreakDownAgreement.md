@@ -18,3 +18,4 @@ that we are satisfied with each others work
 * Each task involves around completing sequence diagrams, class diagrams and design rationale
   ___
   I,Kenny accept this WBA
+  I, Michael-Laifu Chhua accept this WBA
