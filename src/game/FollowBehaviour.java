@@ -36,6 +36,7 @@ public class FollowBehaviour implements Behaviour {
 					return new MoveActorAction(destination, exit.getName());
 				}
 			}
+
 		}
 
 		return null;

@@ -50,4 +50,5 @@ public class Stegosaur extends Actor {
 		return new DoNothingAction();
 	}
 
+
 }
