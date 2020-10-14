@@ -9,10 +9,11 @@ public abstract class Dinosaur extends Actor {
     private int turnAge;
     private boolean adult = false;
     private boolean male;
+    private Enum<?> edibleType;
     private Capabilities capabilities;
     private ArrayList<Behaviour> behaviour;
 
-    private SeekFoodBehaviour seekFoodBehaviour = new SeekFoodBehaviour(capabilities);
+    private SeekFoodBehaviour seekFoodBehaviour = new SeekFoodBehaviour();
 
     private int hungryFoodLevel = 15;
     private int wellFedFoodLevel = 50;
@@ -23,7 +24,7 @@ public abstract class Dinosaur extends Actor {
      *
      * @param name the name of this Stegosaur
      */
-    public Dinosaur(String name, int foodLevel, int turnAge, boolean male, Capabilities capabilities, ArrayList<Behaviour> behaviour) {
+    public Dinosaur(String name, int foodLevel, int turnAge, boolean male, Capabilities capabilities, ArrayList<Behaviour> behaviour, Enum<?> edibleType) {
         super(name, 'd', 100);
 
         this.foodLevel = foodLevel;
@@ -31,6 +32,7 @@ public abstract class Dinosaur extends Actor {
         this.male = male;
         this.capabilities = capabilities;
         this.behaviour = behaviour;
+        this.edibleType = edibleType;
 
         this.behaviour.add(new WanderBehaviour());
     }
@@ -86,6 +88,10 @@ public abstract class Dinosaur extends Actor {
 
     public void increaseFoodLevel(int foodLevel){
         this.foodLevel += foodLevel;
+    }
+
+    public Enum<?> getEdibleType(){
+        return edibleType;
     }
 
 }

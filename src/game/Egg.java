@@ -8,10 +8,9 @@ import java.util.Random;
 
 public class Egg extends Food {
 
-    private Capabilities capabilities;
     private Class dinosaurToHatch;
 
-    public Egg( Capabilities capabilities, Dinosaur parentDinosaur) {
+    public Egg(  Dinosaur parentDinosaur) {
         super(10, "egg", 'e', true);
         this.capabilities.addCapability(GameCapability.CARNIVOREEDIBLE);
         this.dinosaurToHatch = parentDinosaur.getClass();

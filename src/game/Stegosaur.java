@@ -10,9 +10,14 @@ import java.util.ArrayList;
 public class Stegosaur extends Dinosaur {
 //    private static ArrayList<Behaviour> behaviour = new ArrayList<>();
 //    private static Capabilities capabilities = new Capabilities();
+
+    public Stegosaur(String name, int foodLevel, int turnAge, boolean male ) {
+        super(name, foodLevel, turnAge, male, stegosaurCapabilities(), stegosaurBehaviour(), GameCapability.HERBIVOREEDIBLE);
+    }
+
     private static Capabilities stegosaurCapabilities(){
         Capabilities capabilities = new Capabilities();
-        capabilities.addCapability(GameCapability.ATTACKABLE);
+        capabilities.addCapability(GameCapability.ALLOSAURATTACKABLE);
         return capabilities;
     }
 
@@ -22,7 +27,4 @@ public class Stegosaur extends Dinosaur {
         return null;
     }
 
-    public Stegosaur(String name, int foodLevel, int turnAge, boolean male ) {
-        super(name, foodLevel, turnAge, male, stegosaurCapabilities(), stegosaurBehaviour());
-    }
 }
