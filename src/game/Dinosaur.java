@@ -9,6 +9,8 @@ public abstract class Dinosaur extends Actor {
     private int turnAge;
     private boolean adult = false;
     private boolean male;
+    private boolean pregnant = false;
+    private int pregnantCounter = 0;
     private Enum<?> edibleType;
     private Capabilities capabilities;
     private ArrayList<Behaviour> behaviour;
@@ -75,7 +77,15 @@ public abstract class Dinosaur extends Actor {
             }
         }
 
-        return new DoNothingAction();
+        if(pregnant){
+            pregnantCounter ++;
+            if (pregnantCounter == 10){
+                pregnantCounter = 0;
+                return new BreedingAction(this);
+            }
+        }
+
+            return new DoNothingAction();
     }
 
     boolean isMale(){

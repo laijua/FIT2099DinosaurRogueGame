@@ -26,5 +26,4 @@ public class Stegosaur extends Dinosaur {
         behaviours.add(new SeekFoodBehaviour());
         return null;
     }
-
 }

@@ -10,7 +10,7 @@ public class Egg extends Food {
 
     private Class dinosaurToHatch;
 
-    public Egg(  Dinosaur parentDinosaur) {
+    public Egg(Dinosaur parentDinosaur) {
         super(10, "egg", 'e', true);
         this.capabilities.addCapability(GameCapability.CARNIVOREEDIBLE);
         this.dinosaurToHatch = parentDinosaur.getClass();
@@ -30,6 +30,10 @@ public class Egg extends Food {
             return new Allosaur("babyA", 50, 0, male)  ;
         }
         return null;
+    }
+
+    public Class getDinosaurToHatch() {
+        return dinosaurToHatch;
     }
 
 }

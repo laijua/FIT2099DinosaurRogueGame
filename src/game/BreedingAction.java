@@ -19,10 +19,10 @@ public class BreedingAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor + " and " + parentDino + " have bred";
     }
 
-    private Egg breed(){
+    private Egg breed() {
         return new Egg(parentDino);
     }
 }
