@@ -22,7 +22,8 @@ public class Tree extends Ground {
 			displayChar = 'T';
 
 		if (droppedFruit) {
-			for (Item item : location.getItems()) {
+			for (Integer i = 0;i<location.getItems().size();i++) {
+				Item item = location.getItems().get(i);
 				System.out.println("test");
 				if (item instanceof Fruit) {
 					((Fruit) item).decayFruit();
