@@ -17,7 +17,6 @@ public class GameMapModified extends GameMap {
 
   public GameMapModified(GroundFactory groundFactory, List<String> lines) {
     super(groundFactory,lines);
-
     beginnngGrowGrass(groundFactory, lines);
   }
 
@@ -46,6 +45,4 @@ public class GameMapModified extends GameMap {
       }
     }
   }
-
-
 }

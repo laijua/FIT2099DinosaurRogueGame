@@ -24,3 +24,4 @@ public abstract class Food extends Item {
     return new FailPickUpItemAction(this);
   }
 }
+
