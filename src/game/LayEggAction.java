@@ -14,7 +14,7 @@ public class LayEggAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Location dinosaurLocation = map.locationOf(actor);
         dinosaurLocation.addItem(breed());
-        return null;
+        return menuDescription(actor);
     }
 
     @Override
