@@ -31,7 +31,7 @@ public class AttackBehaviour implements Behaviour {
                 if (map.isAnActorAt(location)){
                     if (map.getActorAt(location) instanceof  Dinosaur){
                         Dinosaur target = (Dinosaur) map.getActorAt(location);
-                        if (target.getCapabilities().hasCapability(GameCapability.ALLOSAURATTACKABLE)){
+                        if (target.hasCapability(GameCapability.ALLOSAURATTACKABLE)){
                             return new AttackAction(target);
                         }
                     }

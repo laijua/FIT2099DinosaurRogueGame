@@ -1,14 +1,16 @@
 package game;
 
 import edu.monash.fit2099.engine.Capabilities;
+import edu.monash.fit2099.engine.Location;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Egg extends Food {
+public class Egg extends Food { // egg play turn to hatch
 
     private Class dinosaurToHatch;
+    private int eggAge = 0;
 
     public Egg(Dinosaur parentDinosaur) {
         super(10, "egg", 'e', true);
@@ -36,4 +38,13 @@ public class Egg extends Food {
         return dinosaurToHatch;
     }
 
+    @Override
+    public void tick(Location currentLocation) {
+        super.tick(currentLocation);
+        eggAge ++;
+        if (eggAge >= 10){
+            currentLocation.addActor(hatch());
+            currentLocation.removeItem(this);
+        }
+    }
 }

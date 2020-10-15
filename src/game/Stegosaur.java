@@ -12,14 +12,17 @@ public class Stegosaur extends Dinosaur {
 //    private static Capabilities capabilities = new Capabilities();
 
     public Stegosaur(String name, int foodLevel, int turnAge, boolean male ) {
-        super(name, foodLevel, turnAge, male, stegosaurCapabilities(), stegosaurBehaviour(), GameCapability.HERBIVOREEDIBLE, 's');
+        super(name, foodLevel, turnAge, male, stegosaurBehaviour(), GameCapability.HERBIVOREEDIBLE, 's');
+        addCapability(GameCapability.ALLOSAURATTACKABLE);
+        addCapability(GameCapability.CARNIVOREEDIBLE);
     }
 
-    private static Capabilities stegosaurCapabilities(){
-        Capabilities capabilities = new Capabilities();
-        capabilities.addCapability(GameCapability.ALLOSAURATTACKABLE);
-        return capabilities;
-    }
+//    private static ArrayList<Capabilities >stegosaurCapabilities(){
+//        Capabilities capabilities = new Capabilities();
+//        capabilities.addCapability(GameCapability.ALLOSAURATTACKABLE);
+//        capabilities.addCapability(GameCapability.CARNIVOREEDIBLE);
+//        return capabilities;
+//    }
 
     private static ArrayList<Behaviour> stegosaurBehaviour(){
         ArrayList<Behaviour> behaviours = new ArrayList<>();
