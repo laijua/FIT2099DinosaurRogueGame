@@ -30,6 +30,14 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
+		// Add harvest Action if player is in Grass
+		if (map.locationOf(this).getGround() instanceof Grass){
+			Hay hay = new Hay();
+			actions.add(new HarvestAction(hay));
+		};
+		//actions.get()
+
 		return menu.showMenu(this, actions, display);
 	}
 }
