@@ -2,8 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.Location;
 
-public abstract class CommonStuffBehaviour implements Behaviour{
+public abstract class CommonStuffBehaviour implements Behaviour {
     protected int[] dinosaurSearchRadius = {0, 1, -1, 2, -2, 3, -3, 4, -4};
+    protected int[] dinosaurInteractionRadius = {0, 1, -1};
+
     /**
      * Compute the Manhattan distance between two locations.
      *
