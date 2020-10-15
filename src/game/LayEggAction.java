@@ -2,11 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-public class BreedingAction extends Action {
+public class LayEggAction extends Action {
 
     private Dinosaur parentDino;
 
-    public BreedingAction(Dinosaur parentDinoClass) {
+    public LayEggAction(Dinosaur parentDinoClass) {
         this.parentDino = parentDinoClass;
     }
 

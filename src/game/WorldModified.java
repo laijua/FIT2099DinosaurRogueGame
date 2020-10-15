@@ -69,6 +69,12 @@ public class WorldModified extends World {
     if (action instanceof HarvestAction){
       ecopoints.addEcopoints(1);
     }
+    if (action instanceof FeedAction){
+      if (((FeedAction) action).item instanceof Hay)
+        ecopoints.addEcopoints(10);
+      if (((FeedAction) action).item instanceof Fruit)
+        ecopoints.addEcopoints(15);
+    }
     lastActionMap.put(actor, action);
 
     String result = action.execute(actor, map);

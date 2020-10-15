@@ -27,7 +27,7 @@ public class Application {
 		".....#######....................................................................",
 		".....#_____#....................................................................",
 		".....#_____#....................................................................",
-		".....###.###....................................................................",
+		".....###G###....................................................................",
 		"................................................................................",
 		"......................................+++.......................................",
 		".......................................++++.....................................",
@@ -54,9 +54,10 @@ public class Application {
 		world.addPlayer(player, gameMap.at(9, 4));
 		
 		// Place a pair of stegosaurs in the middle of the map
-		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 10, true));
-		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 10, false));
-		gameMap.at(33, 12).addActor(new Allosaur("Allosaur", 3, 10, false));
+//		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 10, true));
+//		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 10, false));
+//		gameMap.at(33, 12).addActor(new Allosaur("Allosaur", 3, 10, false));
+		gameMap.at(8, 6).addActor(new Allosaur("Allosaur", 3, 10, false));
 
 		gameMap.at(79,0).addItem(new Egg(new Allosaur("Allosaur",3,10,false)));
 

@@ -39,7 +39,7 @@ public class SeekFoodBehaviour implements Behaviour {
             if (dinosaur.getEdibleType() == GameCapability.CARNIVOREEDIBLE) {
                 for (int x : dinosaurSearchRadius) {
                     for (int y : dinosaurSearchRadius) {
-                        if (dinoX + x <= 79 && dinoY + y <= 25 && dinoX + x >= 0
+                        if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0
                             && dinoY + y >= 0) {
                             Location location = map.at(dinoX + x, dinoY + y);
                             if (location.containsAnActor()) {

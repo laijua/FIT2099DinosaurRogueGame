@@ -27,7 +27,7 @@ public class AttackBehaviour implements Behaviour {
 
         for (int x : dinosaurSearchRadius) {
             for (int y : dinosaurSearchRadius) {
-                if (dinoX+x <=79 && dinoY+y<=25 && dinoX+x >=0 && dinoY+y>=0) {
+                if (dinoX+x <=79 && dinoY+y<=24 && dinoX+x >=0 && dinoY+y>=0) {
                     Location location = map.at(dinoX + x, dinoY + y);
                     if (map.isAnActorAt(location)) {
                         if (map.getActorAt(location) instanceof Dinosaur) {

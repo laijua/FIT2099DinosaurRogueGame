@@ -93,7 +93,7 @@ public abstract class Dinosaur extends Actor {
                 pregnantCounter++;
                 if (pregnantCounter == 10) {
                     pregnantCounter = 0;
-                    return new BreedingAction(this);
+                    return new LayEggAction(this);
                 }
             }
 

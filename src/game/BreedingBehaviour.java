@@ -22,7 +22,7 @@ public class BreedingBehaviour implements Behaviour {
                     Dinosaur otherDinosaur = (Dinosaur) location.getActor();
                     if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
                         if (otherDinosaur.isAdult()) {
-                            return new BreedingAction(dinosaur);
+                            return new LayEggAction(dinosaur);
                         }
                     }
                 }
