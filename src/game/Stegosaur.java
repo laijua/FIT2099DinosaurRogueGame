@@ -26,7 +26,7 @@ public class Stegosaur extends Dinosaur {
 
     private static ArrayList<Behaviour> stegosaurBehaviour(){
         ArrayList<Behaviour> behaviours = new ArrayList<>();
-//        behaviours.add(new WanderBehaviour());
+        behaviours.add(new WanderBehaviour());
 //        behaviours.add(new SeekFoodBehaviour());
         return behaviours;
     }

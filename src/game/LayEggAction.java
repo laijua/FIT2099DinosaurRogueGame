@@ -19,7 +19,7 @@ public class LayEggAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " and " + parentDino + " have bred";
+        return actor + " has laid an egg";
     }
 
     private Egg breed() {

@@ -20,7 +20,6 @@ public abstract class Dinosaur extends Actor {
 //    private Capabilities capabilities;
     private ArrayList<Behaviour> behaviour;
 
-    private SeekFoodBehaviour seekFoodBehaviour = new SeekFoodBehaviour();
 
     private int hungryFoodLevel = 15;
     private int wellFedFoodLevel = 50;
@@ -74,28 +73,33 @@ public abstract class Dinosaur extends Actor {
 //        if (wander != null)
 //            return wander;
 
+            if (pregnant) {
+                pregnantCounter++;
+                if (pregnantCounter >= 1) {
+                    pregnantCounter = 0;
+                    return new LayEggAction(this);
+                }
+            }
+
             if (foodLevel < hungryFoodLevel) {
                 System.out.println(this + " at " +  "("+ map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting hungry!");
+                SeekFoodBehaviour seekFoodBehaviour = new SeekFoodBehaviour();
                 Action action = seekFoodBehaviour.getAction(this, map);
                 if (action != null) {
                     return action;
                 }
             } else if (foodLevel > wellFedFoodLevel && isAdult()) {
-
+                BreedingBehaviour breedingBehaviour = new BreedingBehaviour();
+                Action action = breedingBehaviour.getAction(this, map);
+                if (action != null) {
+                    return action;
+                }
             }
 
             for (Behaviour behaviours : behaviour) {
                 Action action = behaviours.getAction(this, map);
                 if (action != null) {
                     return action;
-                }
-            }
-
-            if (pregnant) {
-                pregnantCounter++;
-                if (pregnantCounter == 10) {
-                    pregnantCounter = 0;
-                    return new LayEggAction(this);
                 }
             }
 
@@ -127,6 +131,12 @@ public abstract class Dinosaur extends Actor {
 
     public Enum<?> getEdibleType() {
         return edibleType;
+    }
+
+    public void impregnate(){
+        if (!male){
+            pregnant = true;
+        }
     }
 
 }
