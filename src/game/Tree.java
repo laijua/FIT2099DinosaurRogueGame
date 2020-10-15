@@ -40,6 +40,8 @@ public class Tree extends Ground {
 			location.addItem(fruit);
 			droppedFruit = true;
 		}
+	}
+}
 
 //		if (Math.random()<0.05 && location.getItems().){
 //
