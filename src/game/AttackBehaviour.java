@@ -5,35 +5,41 @@ import edu.monash.fit2099.engine.*;
 public class AttackBehaviour implements Behaviour {
     private Actor target;
 
-    public AttackBehaviour(Actor target) {
-        this.target = target;
-    }
-
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        if (!map.contains(target) || !map.contains(actor))
-            return null;
+//        if (!map.contains(target) || !map.contains(actor))
+//            return null;
+//
+//        Location here = map.locationOf(actor);
+//        Location there = map.locationOf(target);
+//
+//        int currentDistance = distance(here, there);
+//        if (currentDistance == 1) {
+//            return new AttackAction(target);
+//        }
 
-        Location here = map.locationOf(actor);
-        Location there = map.locationOf(target);
+        Dinosaur dinosaur = (Dinosaur) actor;
+        Location dinosaurLocation = map.locationOf(actor);
+        int dinoX = dinosaurLocation.x();
+        int dinoY = dinosaurLocation.y();
 
-        int currentDistance = distance(here, there);
-        if (currentDistance == 1) {
-            return new AttackAction(target);
+        int[] dinosaurSearchRadius = {0, 1, -1};
+
+        for (int x : dinosaurSearchRadius) {
+            for (int y : dinosaurSearchRadius) {
+                Location location = map.at(dinoX + x, dinoY + y);
+                if (map.isAnActorAt(location)){
+                    if (map.getActorAt(location) instanceof  Dinosaur){
+                        Dinosaur target = (Dinosaur) map.getActorAt(location);
+                        if (target.getCapabilities().hasCapability(GameCapability.ALLOSAURATTACKABLE)){
+                            return new AttackAction(target);
+                        }
+                    }
+                }
+            }
         }
 
         return null;
-    }
-
-    /**
-     * Compute the Manhattan distance between two locations.
-     *
-     * @param a the first location
-     * @param b the first location
-     * @return the number of steps between a and b if you only move in the four cardinal directions.
-     */
-    private int distance(Location a, Location b) {
-        return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 }
 

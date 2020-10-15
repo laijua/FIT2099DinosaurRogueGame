@@ -21,6 +21,9 @@ public class SeekFoodBehaviour implements Behaviour {
                     if (items instanceof Food){
                         Food food = (Food) items;
                         if (food.hasCapability(dinosaur.getEdibleType())){
+                            if(false){
+                                // increase dino food level, remove food in the returned EatAction?
+                            }
                             return new MoveActorAction(location, "Ssdsdsdsdsdsd");
                         }
                     }

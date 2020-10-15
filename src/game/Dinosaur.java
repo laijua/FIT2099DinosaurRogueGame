@@ -12,6 +12,11 @@ public abstract class Dinosaur extends Actor {
     private boolean pregnant = false;
     private int pregnantCounter = 0;
     private Enum<?> edibleType;
+    private int unconsciousTurns = 0;
+    private int deathTurn = 3;
+    private boolean unconscious = false;
+
+
     private Capabilities capabilities;
     private ArrayList<Behaviour> behaviour;
 
@@ -26,8 +31,8 @@ public abstract class Dinosaur extends Actor {
      *
      * @param name the name of this Stegosaur
      */
-    public Dinosaur(String name, int foodLevel, int turnAge, boolean male, Capabilities capabilities, ArrayList<Behaviour> behaviour, Enum<?> edibleType) {
-        super(name, 'd', 100);
+    public Dinosaur(String name, int foodLevel, int turnAge, boolean male, Capabilities capabilities, ArrayList<Behaviour> behaviour, Enum<?> edibleType, char displayChar) {
+        super(name, displayChar, 100);
 
         this.foodLevel = foodLevel;
         this.turnAge = turnAge;
@@ -36,7 +41,7 @@ public abstract class Dinosaur extends Actor {
         this.behaviour = behaviour;
         this.edibleType = edibleType;
 
-        this.behaviour.add(new WanderBehaviour());
+//        this.behaviour.add(new WanderBehaviour());
     }
 
     @Override
@@ -55,53 +60,74 @@ public abstract class Dinosaur extends Actor {
 
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        turnAge ++;
-        if (turnAge > 30)
-            adult = true;
+        if (!unconscious) {
+            foodLevel--;
+            if (foodLevel <= 0) {
+                unconscious = true;
+            }
+
+            turnAge++;
+            if (turnAge > 30)
+                adult = true;
 
 //        Action wander = behaviour.getAction(this, map);
 //        if (wander != null)
 //            return wander;
 
-        if (foodLevel < hungryFoodLevel && adult) {
-            Action action = seekFoodBehaviour.getAction(this, map);
-        }
-        else if (foodLevel > wellFedFoodLevel){
-
-        }
-
-        for (Behaviour behaviours : behaviour) {
-            Action action = behaviours.getAction(this, map);
-            if (action != null) {
+            if (foodLevel < hungryFoodLevel && adult) {
+                Action action = seekFoodBehaviour.getAction(this, map);
                 return action;
+            } else if (foodLevel > wellFedFoodLevel) {
+
+            }
+
+            for (Behaviour behaviours : behaviour) {
+                Action action = behaviours.getAction(this, map);
+                if (action != null) {
+                    return action;
+                }
+            }
+
+            if (pregnant) {
+                pregnantCounter++;
+                if (pregnantCounter == 10) {
+                    pregnantCounter = 0;
+                    return new BreedingAction(this);
+                }
+            }
+
+        }
+        else{
+            unconsciousTurns++;
+            if (unconsciousTurns >= deathTurn) {
+                return new DieAction();
             }
         }
 
-        if(pregnant){
-            pregnantCounter ++;
-            if (pregnantCounter == 10){
-                pregnantCounter = 0;
-                return new BreedingAction(this);
-            }
-        }
 
-            return new DoNothingAction();
+
+
+        return new DoNothingAction();
     }
 
-    boolean isMale(){
+    boolean isMale() {
         return male;
     }
 
-    boolean isAdult(){
+    boolean isAdult() {
         return adult;
     }
 
-    public void increaseFoodLevel(int foodLevel){
+    public void increaseFoodLevel(int foodLevel) {
         this.foodLevel += foodLevel;
     }
 
-    public Enum<?> getEdibleType(){
+    public Enum<?> getEdibleType() {
         return edibleType;
+    }
+
+    public Capabilities getCapabilities() {
+        return capabilities;
     }
 
 }
