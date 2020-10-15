@@ -25,7 +25,7 @@ public class Allosaur extends Dinosaur {
     }
 
     public Allosaur(String name, int foodLevel, int turnAge, boolean male) {
-        super(name, foodLevel, turnAge, male, allosaurBehaviour(), GameCapability.CARNIVOREEDIBLE, 'a');
+        super(name, foodLevel, turnAge, male, allosaurBehaviour(), GameCapability.CARNIVOREEDIBLE, 'A');
 //        addCapability(GameCapability.ALLOSAURATTACKABLE);
     }
 
