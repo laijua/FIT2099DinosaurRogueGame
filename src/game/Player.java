@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Menu;
 
 /**
@@ -35,7 +36,28 @@ public class Player extends Actor {
 		if (map.locationOf(this).getGround() instanceof Grass){
 			Hay hay = new Hay();
 			actions.add(new HarvestAction(hay));
-		};
+		}
+
+
+		// Does player have food and next to dinosaur
+		for(int i = 0; i<this.getInventory().size();i++){
+			if (this.getInventory().get(i) instanceof Hay || this.getInventory().get(i) instanceof Fruit){
+				for (int j = 0; j<map.locationOf(this).getExits().size(); j++){
+					Location neighbour = map.locationOf(this).getExits().get(j).getDestination();
+					if(neighbour.containsAnActor()){
+						if (neighbour.getActor() instanceof Dinosaur){
+							actions.add(new FeedAction((Food)this.getInventory().get(i), (Dinosaur) neighbour.getActor()));
+						}
+//						else if (map.locationOf(this).getExits().get(j).getDestination().getActor() instanceof Stegosaur){
+//							continue;
+//						}
+					}
+				}
+			}
+		}
+		// is player next to vending machine
+
+
 		//actions.get()
 
 		return menu.showMenu(this, actions, display);

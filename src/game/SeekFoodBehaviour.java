@@ -17,33 +17,38 @@ public class SeekFoodBehaviour implements Behaviour {
 
         for (int x : dinosaurSearchRadius) {
             for (int y : dinosaurSearchRadius) {
-                Location location = map.at(dinoX + x, dinoY + y);
-                for(Item items: location.getItems()){
-                    if (items instanceof Food){
-                        Food food = (Food) items;
-                        if (food.hasCapability(dinosaur.getEdibleType())){
-                            if(false){
-                                // increase dino food level, remove food in the returned EatAction?
-                                foundFood = true;
+                if (dinoX+x <=79 && dinoY+y<=25 && dinoX+x >=0 && dinoY+y>=0) {
+                    Location location = map.at(dinoX + x, dinoY + y);
+                    for (Item items : location.getItems()) {
+                        if (items instanceof Food) {
+                            Food food = (Food) items;
+                            if (food.hasCapability(dinosaur.getEdibleType())) {
+                                if (false) {
+                                    // increase dino food level, remove food in the returned EatAction?
+                                    foundFood = true;
+                                }
+                                return new MoveActorAction(location, "Ssdsdsdsdsdsd");
                             }
-                            return new MoveActorAction(location, "Ssdsdsdsdsdsd");
                         }
                     }
                 }
             }
         }
 
-        if(!foundFood){
-            if (dinosaur.getEdibleType() == GameCapability.CARNIVOREEDIBLE){
+        if (!foundFood) {
+            if (dinosaur.getEdibleType() == GameCapability.CARNIVOREEDIBLE) {
                 for (int x : dinosaurSearchRadius) {
                     for (int y : dinosaurSearchRadius) {
-                        Location location = map.at(dinoX + x, dinoY + y);
-                        if(location.containsAnActor()){
-                            if (location.getActor() instanceof Dinosaur){
-                                Dinosaur target = (Dinosaur) location.getActor();
-                                if (target.hasCapability(GameCapability.ALLOSAURATTACKABLE)){
-                                    System.out.println("SD");
-                                    return new FollowBehaviour(target).getAction(target, map);
+                        if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0
+                            && dinoY + y >= 0) {
+                            Location location = map.at(dinoX + x, dinoY + y);
+                            if (location.containsAnActor()) {
+                                if (location.getActor() instanceof Dinosaur) {
+                                    Dinosaur target = (Dinosaur) location.getActor();
+                                    if (target.hasCapability(GameCapability.ALLOSAURATTACKABLE)) {
+                                        System.out.println("SD");
+                                        return new FollowBehaviour(target).getAction(target, map);
+                                    }
                                 }
                             }
                         }

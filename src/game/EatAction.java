@@ -9,7 +9,6 @@ public class EatAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Dinosaur d = (Dinosaur) actor;
         d.increaseFoodLevel(1);
-//        map.
         return null;
     }
 

@@ -26,7 +26,7 @@ public class FailPickUpItemAction extends PickUpItemAction {
    */
   @Override
   public String execute(Actor actor, GameMap map) {
-    return actor + "dasdsadsadasdsa";
+    return actor + "Unfortunately was not able to pick up: "+ item;
   }
 
   /**
@@ -39,6 +39,5 @@ public class FailPickUpItemAction extends PickUpItemAction {
   @Override
   public String menuDescription(Actor actor) {
     return actor + " picks up the " + item;
-    //return actor + " searched the tree for " + item+ ", but could not find any ripe ones.";
   }
 }

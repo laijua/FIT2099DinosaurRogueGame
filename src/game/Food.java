@@ -23,4 +23,9 @@ public abstract class Food extends Item {
       return new PickUpItemAction(this);
     return new FailPickUpItemAction(this);
   }
+
+  public int getFoodLevelPoint() {
+    return foodLevelPoint;
+  }
 }
+
