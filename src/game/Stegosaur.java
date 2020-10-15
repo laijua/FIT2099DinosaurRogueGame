@@ -1,54 +1,32 @@
 package game;
 
+import edu.monash.fit2099.engine.*;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import java.util.ArrayList;
 
 /**
  * A herbivorous dinosaur.
- *
  */
-public class Stegosaur extends Actor {
-	// Will need to change this to a collection if Stegosaur gets additional Behaviours.
-	private Behaviour behaviour;
+public class Stegosaur extends Dinosaur {
+//    private static ArrayList<Behaviour> behaviour = new ArrayList<>();
+//    private static Capabilities capabilities = new Capabilities();
 
-	/** 
-	 * Constructor.
-	 * All Stegosaurs are represented by a 'd' and have 100 hit points.
-	 * 
-	 * @param name the name of this Stegosaur
-	 */
-	public Stegosaur(String name) {
-		super(name, 'd', 100);
-		
-		behaviour = new WanderBehaviour();
-	}
+    public Stegosaur(String name, int foodLevel, int turnAge, boolean male ) {
+        super(name, foodLevel, turnAge, male, stegosaurBehaviour(), GameCapability.HERBIVOREEDIBLE, 's');
+        addCapability(GameCapability.ALLOSAURATTACKABLE);
+        addCapability(GameCapability.CARNIVOREEDIBLE);
+    }
 
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
-	}
+//    private static ArrayList<Capabilities >stegosaurCapabilities(){
+//        Capabilities capabilities = new Capabilities();
+//        capabilities.addCapability(GameCapability.ALLOSAURATTACKABLE);
+//        capabilities.addCapability(GameCapability.CARNIVOREEDIBLE);
+//        return capabilities;
+//    }
 
-	/**
-	 * Figure out what to do next.
-	 * 
-	 * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
-	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		Action wander = behaviour.getAction(this, map);
-		if (wander != null)
-			return wander;
-		
-		return new DoNothingAction();
-	}
-
-
+    private static ArrayList<Behaviour> stegosaurBehaviour(){
+        ArrayList<Behaviour> behaviours = new ArrayList<>();
+//        behaviours.add(new WanderBehaviour());
+        return behaviours;
+    }
 }
