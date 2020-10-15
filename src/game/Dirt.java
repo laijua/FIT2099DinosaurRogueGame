@@ -23,7 +23,7 @@ public class Dirt extends Ground {
 				counter ++;
 			}
 			if (counter ==2 && Math.random()<0.1){
-//				System.out.println("set Ground" + location.x()+" "+ location.y()+" "+counter+" "+test);
+				((GameMapModified)location.map()).increaseEcopoints(1);
 				location.setGround(new Grass());
 				// No point continuing with the for loop
 				break;

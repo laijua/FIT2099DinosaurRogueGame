@@ -12,15 +12,14 @@ public class HarvestAction extends PickUpItemAction {
    *
    * @param item the item to pick up
    */
-  public HarvestAction(Hay hay) {
-    super(hay);
+  public HarvestAction(Item item) {
+    super(item);
   }
 
   @Override
   public String execute(Actor actor, GameMap map) {
     map.locationOf(actor).setGround(new Dirt());
     actor.addItemToInventory(item);
-    System.out.println("test if this is called");
     return menuDescription(actor);
   }
 

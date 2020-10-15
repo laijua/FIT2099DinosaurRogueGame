@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameMapModified extends GameMap {
+  private Ecopoints ecopoints;
+  private Integer grassGrown = 0;
+
 
   public GameMapModified(GroundFactory groundFactory, char groundChar,
       int width,
@@ -39,10 +42,21 @@ public class GameMapModified extends GameMap {
       for (int y : heights) {
         char groundChar = lines.get(y).charAt(x);
         if (groundChar == '.' && Math.random()<0.02){
+
           at(x, y).setGround(groundFactory.newGround('G'));
+          grassGrown++;
+
         }else
           at(x, y).setGround(groundFactory.newGround(groundChar));
       }
     }
+  }
+  public void initializeEcopoints(Ecopoints ecopoints){
+    this.ecopoints = ecopoints;
+    this.ecopoints.addEcopoints(grassGrown);
+  }
+
+  public void increaseEcopoints(Integer val) {
+    this.ecopoints.addEcopoints(val);
   }
 }

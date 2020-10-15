@@ -9,10 +9,12 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.PickUpItemAction;
 import edu.monash.fit2099.engine.World;
 
 public class WorldModified extends World {
+
+  Ecopoints ecopoints = new Ecopoints();
+
 
   /**
    * Constructor.
@@ -24,7 +26,15 @@ public class WorldModified extends World {
   }
 
   @Override
+  public void addGameMap(GameMap gameMap) {
+    super.addGameMap(gameMap);
+    ((GameMapModified) gameMap).initializeEcopoints(ecopoints);
+
+  }
+
+  @Override
   protected void processActorTurn(Actor actor) {
+    System.out.println("Ecopoints Balance: "+ecopoints.getEcopoints());
     Location here = actorLocations.locationOf(actor);
     GameMap map = here.map();
 
@@ -56,6 +66,9 @@ public class WorldModified extends World {
     actions.add(new DoNothingAction());
 
     Action action = actor.playTurn(actions, lastActionMap.get(actor), map, display);
+    if (action instanceof HarvestAction){
+      ecopoints.addEcopoints(1);
+    }
     lastActionMap.put(actor, action);
 
     String result = action.execute(actor, map);
