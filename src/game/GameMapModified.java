@@ -59,4 +59,7 @@ public class GameMapModified extends GameMap {
   public void increaseEcopoints(Integer val) {
     this.ecopoints.addEcopoints(val);
   }
+  public Integer getEcopoints(){
+    return ecopoints.getEcopoints();
+  }
 }

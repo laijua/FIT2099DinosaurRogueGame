@@ -57,10 +57,10 @@ public class Application {
 //		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 10, true));
 //		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 10, false));
 //		gameMap.at(33, 12).addActor(new Allosaur("Allosaur", 3, 10, false));
-		gameMap.at(8, 6).addActor(new Allosaur("Allosaur", 3, 10, false));
+		gameMap.at(8, 7).addActor(new Allosaur("Allosaur", 3, 10, false));
 
-		gameMap.at(79,0).addItem(new Egg(new Allosaur("Allosaur",3,10,false)));
-
+		//gameMap.at(8,12).addItem(new Egg(new Allosaur("Allosaur",3,10,false)));
+		gameMap.at(10,4).setGround(new VendingMachine());
 		world.run();
 	}
 }

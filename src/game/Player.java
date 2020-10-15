@@ -36,8 +36,10 @@ public class Player extends Actor {
 		if (map.locationOf(this).getGround() instanceof Grass){
 			Hay hay = new Hay();
 			actions.add(new HarvestAction(hay));
-		};
+		}
 
+
+		// Does player have food and next to dinosaur
 		for(int i = 0; i<this.getInventory().size();i++){
 			if (this.getInventory().get(i) instanceof Hay || this.getInventory().get(i) instanceof Fruit){
 				for (int j = 0; j<map.locationOf(this).getExits().size(); j++){
@@ -53,6 +55,8 @@ public class Player extends Actor {
 				}
 			}
 		}
+		// is player next to vending machine
+
 
 		//actions.get()
 

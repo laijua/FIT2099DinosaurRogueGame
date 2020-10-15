@@ -23,6 +23,7 @@ public class FeedAction extends Action {
   @Override
   public String execute(Actor actor, GameMap map) {
     String getFoodLevelPoint = ""+item.getFoodLevelPoint();
+    // MAke sure to check if it reaches max
     dinosaur.increaseFoodLevel(item.getFoodLevelPoint());
     actor.removeItemFromInventory(item);
     return dinosaur + " has been fed " + getFoodLevelPoint + " points";
