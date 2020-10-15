@@ -11,5 +11,6 @@ public class Hay extends Food {
    */
   public Hay() {
     super(10,"Hay",'H',true);
+    addCapability(GameCapability.HERBIVOREEDIBLE);
   }
 }
