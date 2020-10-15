@@ -7,7 +7,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Egg extends Food { // egg play turn to hatch
+public class Egg extends Food {
 
     private Class dinosaurToHatch;
     private int eggAge = 0;
