@@ -2,7 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-public class BreedingBehaviour implements Behaviour {
+public class BreedingBehaviour extends CommonStuffBehaviour {
     private Actor target;
 
     @Override
@@ -13,16 +13,16 @@ public class BreedingBehaviour implements Behaviour {
         int dinoX = dinosaurLocation.x();
         int dinoY = dinosaurLocation.y();
 
-        int[] dinosaurSearchRadius = {0, 1, -1, 2, -2, 3, -3};
-
         for (int x : dinosaurSearchRadius) {
             for (int y : dinosaurSearchRadius) {
-                Location location = map.at(dinoX + x, dinoY + y);
-                if (location.getActor().getClass() == dinosaur.getClass()) {
-                    Dinosaur otherDinosaur = (Dinosaur) location.getActor();
-                    if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
-                        if (otherDinosaur.isAdult()) {
-                            return new BreedingAction(dinosaur);
+                if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0){
+                    Location location = map.at(dinoX + x, dinoY + y);
+                    if (location.getActor().getClass() == dinosaur.getClass()) {
+                        Dinosaur otherDinosaur = (Dinosaur) location.getActor();
+                        if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
+                            if (otherDinosaur.isAdult()) {
+                                return new LayEggAction(dinosaur);
+                            }
                         }
                     }
                 }

@@ -12,6 +12,7 @@ public class Fruit extends Food {
    */
   public Fruit(int foodLevelPoint,String name, char displayChar, boolean portable) {
     super(foodLevelPoint,name, displayChar, portable);
+    addCapability(GameCapability.HERBIVOREEDIBLE);
   }
   public void decayFruit() {
     fruitDecay--;

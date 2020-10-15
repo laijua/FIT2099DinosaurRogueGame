@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
 public abstract class Food extends Item {
+
     private int foodLevelPoint;
     private double percentPickUp = 1.5;
 
@@ -17,10 +18,14 @@ public abstract class Food extends Item {
         this.foodLevelPoint = foodLevelPoint;
         this.percentPickUp = percentPickUp;
     }
-    @Override
-    public PickUpItemAction getPickUpAction() {
-        if(portable && Math.random()< percentPickUp)
-            return new PickUpItemAction(this);
-        return new FailPickUpItemAction(this);
+//    @Override
+//    public PickUpItemAction getPickUpAction() {
+//        if(portable && Math.random()< percentPickUp)
+//            return new PickUpItemAction(this);
+//        return new FailPickUpItemAction(this);
+//    }
+
+    public int getFoodLevelPoint() {
+        return foodLevelPoint;
     }
 }

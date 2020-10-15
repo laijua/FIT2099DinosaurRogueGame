@@ -53,11 +53,20 @@ public class Application {
 		world.addPlayer(player, gameMap.at(9, 4));
 		
 		// Place a pair of stegosaurs in the middle of the map
-		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 10, true));
-		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 10, false));
-		gameMap.at(33, 12).addActor(new Allosaur("Allosaur", 3, 10, false));
+		gameMap.at(30,10).addItem(new Fruit(10, "Fruit", 'F', true));
+		gameMap.at(30,10).setGround(new Grass());
+		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",14 , 10, true));
+		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 14, 10, false));
+		gameMap.at(36, 12).addActor(new Allosaur("Allosaur", 14, 10, false));
+		gameMap.at(38,20).addItem(new Egg(new Allosaur("Allosaur",3,10,false)));
+		gameMap.at(36,10).addItem(new Egg(new Allosaur("Allosaur",3,10,false)));
 
-			
+
+		gameMap.at(79,24).addItem(new Egg(new Stegosaur("Allosaur",3,10,false)));
+		gameMap.at(79, 24).addActor(new Stegosaur("Stegosaur", 100, 10, false));
+
+
+
 		world.run();
 	}
 }

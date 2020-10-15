@@ -23,10 +23,10 @@ public class Tree extends Ground {
 
 		if (droppedFruit) {
 			for (Item item : location.getItems()) {
-				System.out.println("test");
+//				System.out.println("test");
 				if (item instanceof Fruit) {
 					((Fruit) item).decayFruit();
-					System.out.println("Time until Fruit Decayed:" + ((Fruit) item).getDecay()+", x= "+location.x()+"y= "+location.y());
+//					System.out.println("Time until Fruit Decayed:" + ((Fruit) item).getDecay()+", x= "+location.x()+"y= "+location.y());
 					if (((Fruit) item).getDecay() == 0) {
 						location.removeItem(item);
 						droppedFruit = false;
