@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 public class Fruit extends Food {
   private int fruitDecay = 20;
@@ -11,7 +12,7 @@ public class Fruit extends Food {
    * @param portable true if and only if the Item can be picked up
    */
   public Fruit(int foodLevelPoint,String name, char displayChar, boolean portable) {
-    super(foodLevelPoint,name, displayChar, portable);
+    super(foodLevelPoint,name, displayChar, portable,0.6);
   }
   public void decayFruit() {
     fruitDecay--;
@@ -20,4 +21,6 @@ public class Fruit extends Food {
   public int getDecay() {
     return fruitDecay;
   }
+
+
 }

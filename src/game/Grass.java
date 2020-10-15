@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 public class Grass extends Ground {
 
@@ -17,4 +18,10 @@ public class Grass extends Ground {
 //    }
 
   }
+//  public PickUpItemAction getPickUpAction() {
+//    if(portable)
+//      return new PickUpItemAction(this);
+//
+//    return null;
+//  }
 }
