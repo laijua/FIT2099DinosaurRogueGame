@@ -63,6 +63,7 @@ public abstract class Dinosaur extends Actor {
             foodLevel--;
             if (foodLevel <= 0) {
                 unconscious = true;
+//                return null;
             }
 
             turnAge++;
@@ -74,11 +75,12 @@ public abstract class Dinosaur extends Actor {
 //            return wander;
 
             if (foodLevel < hungryFoodLevel) {
+                System.out.println(this + " at " +  "("+ map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting hungry!");
                 Action action = seekFoodBehaviour.getAction(this, map);
                 if (action != null) {
                     return action;
                 }
-            } else if (foodLevel > wellFedFoodLevel) {
+            } else if (foodLevel > wellFedFoodLevel && isAdult()) {
 
             }
 
@@ -126,9 +128,5 @@ public abstract class Dinosaur extends Actor {
     public Enum<?> getEdibleType() {
         return edibleType;
     }
-
-//    public Capabilities getCapabilities() {
-//        return capabilities;
-//    }
 
 }
