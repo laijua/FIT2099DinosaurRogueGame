@@ -68,7 +68,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                             }
                         }
                     }
-                    if (location.getGround() instanceof Grass) {
+                    if (location.getGround() instanceof Grass && dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
                         int currentDistance = distance(dinosaurLocation, location);
                         for (Exit exit : dinosaurLocation.getExits()) {
                             Location destination = exit.getDestination();
