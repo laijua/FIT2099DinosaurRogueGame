@@ -14,15 +14,11 @@ public class Egg extends Food {
 
     public Egg(Dinosaur parentDinosaur) {
         super(10, "egg", 'E', true);
-        this.capabilities.addCapability(GameCapability.CARNIVOREEDIBLE);
+        addCapability(GameCapability.CARNIVOREEDIBLE);
         this.dinosaurToHatch = parentDinosaur.getClass();
     }
 
     public Dinosaur hatch() {
-//        Class<Dinosaur> temp = dinosaurToHatch.getClass();
-//        Constructor<Dinosaur> con = temp.getConstructor();
-//        return new dinosaurToHatch.getClass();
-//        boolean male = new Random().nextInt(1) == 1;
         boolean male = Math.random()*2 == 1;
 
         if (dinosaurToHatch == Stegosaur.class){
@@ -42,10 +38,10 @@ public class Egg extends Food {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
         eggAge ++;
-        if (eggAge >= 10){
+        if (eggAge >= 10 && !currentLocation.containsAnActor()){
+            System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);
-            ((GameMapModified)currentLocation.map()).increaseEcopoints(dinosaurToHatch==Allosaur.class?1000:100);
         }
     }
 }
