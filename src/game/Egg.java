@@ -42,7 +42,7 @@ public class Egg extends Food {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
         eggAge ++;
-        if (eggAge >= 3){
+        if (eggAge >= 10){
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);
             ((GameMapModified)currentLocation.map()).increaseEcopoints(dinosaurToHatch==Allosaur.class?1000:100);
