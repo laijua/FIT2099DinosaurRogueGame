@@ -16,7 +16,8 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dinosaur = (Dinosaur) actor;
 
-        final int HUNGRYFOODLEVEL = 15;
+        final int HUNGRYFOODLEVEL = 30;
+        final int GRASSFOODLEVEL = 5;
         if (dinosaur.getFoodLevel() < HUNGRYFOODLEVEL) {
             System.out.println(dinosaur + " at " + "(" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") is getting hungry!");
             Location dinosaurLocation = map.locationOf(actor);
@@ -27,7 +28,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
             if (dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
                 if (dinosaurLocation.getGround() instanceof Grass) {
                     dinosaurLocation.setGround(new Dirt());
-                    dinosaur.increaseFoodLevel(5);
+                    dinosaur.increaseFoodLevel(GRASSFOODLEVEL);
                     System.out.println(actor + " at " + "(" + dinoX + ", " + dinoY + ") eats Grass");
                     return null;
                 }

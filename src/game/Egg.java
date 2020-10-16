@@ -11,6 +11,7 @@ public class Egg extends Food {
 
     private Class dinosaurToHatch;
     private int eggAge = 0;
+    private final int HATCHAGE = 7;
 
     /**
      * constructfor for the egg
@@ -55,7 +56,7 @@ public class Egg extends Food {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
         eggAge ++;
-        if (eggAge >= 10 && !currentLocation.containsAnActor()){
+        if (eggAge >= HATCHAGE && !currentLocation.containsAnActor()){
             System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
             ((GameMapModified)currentLocation.map()).increaseEcopoints(dinosaurToHatch==Allosaur.class?1000:100);
             currentLocation.addActor(hatch());

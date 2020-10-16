@@ -13,8 +13,8 @@ public class Fruit extends Food {
    * @param displayChar the character to use to represent this item if it is on the ground
    * @param portable true if and only if the Item can be picked up
    */
-  public Fruit(int foodLevelPoint,String name, char displayChar, boolean portable) {
-    super(foodLevelPoint,name, displayChar, portable,0.6);
+  public Fruit(String name, char displayChar, boolean portable) {
+    super(30,name, displayChar, portable,0.6);
     addCapability(GameCapability.HERBIVOREEDIBLE);
   }
 

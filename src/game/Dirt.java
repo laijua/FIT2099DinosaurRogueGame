@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.Location;
  */
 public class Dirt extends Ground {
 	private final  double GRASSGROWNNEXTTOTREE = 0.02;
-	private final  double GRASSGROWNOTHERGRASS = 0.1;
+	private final  double GRASSGROWNOTHERGRASS = 0.07;
 	/**
 	 * Constructor.
 	 * Ground type with display char of . to indicate its dirt

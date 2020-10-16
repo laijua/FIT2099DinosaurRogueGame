@@ -43,7 +43,7 @@ public class Tree extends Ground {
 			}
 		}
 		if (!droppedFruit && Math.random()<DROPFRUITPERCENT){
-			Fruit fruit = new Fruit(10,"Fruit",'F',true);
+			Fruit fruit = new Fruit("Fruit",'F',true);
 			location.addItem(fruit);
 			droppedFruit = true;
 		}

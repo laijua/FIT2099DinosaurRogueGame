@@ -82,16 +82,18 @@ public abstract class Dinosaur extends Actor {
         int x = map.locationOf(this).x();
         int y = map.locationOf(this).y();
 
-        final int DEATHTURN = 1;
+        final int DEATHTURN = 20;
         final int ADULTAGE = 30;
+        final int PREGNANTDUE = 5;
         turnAge++;
         if (turnAge > ADULTAGE) {
             adult = true;
         }
 
-        if (foodLevel > 0) {
+        if (foodLevel > 0 && unconscious) {
             unconscious = false;
-            System.out.println(this + " at " + "(" + x + ", " + y + ") is back from being unconcious");
+            unconsciousTurns = 0;
+            System.out.println(this + " at " + "(" + x + ", " + y + ") is back from being unconscious");
         }
 
         if (!unconscious) {
@@ -99,13 +101,13 @@ public abstract class Dinosaur extends Actor {
             foodLevel--;
             if (foodLevel <= 0) {
                 unconscious = true;
-                System.out.println(this + " at " + "(" + x + ", " + y + ") is unconcious");
+                System.out.println(this + " at " + "(" + x + ", " + y + ") is unconscious");
             }
 
 
             if (pregnant) {
                 pregnantCounter++;
-                if (pregnantCounter >= 5) {
+                if (pregnantCounter >= PREGNANTDUE) {
                     pregnant = false;
                     pregnantCounter = 0;
                     return new LayEggAction(this);

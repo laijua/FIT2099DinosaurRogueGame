@@ -8,7 +8,7 @@ public class DinosaurCorpse extends Food {
      * Constructor for the food
      */
     public DinosaurCorpse() {
-        super(30, "corpse", 'C', true);
+        super(50, "corpse", 'C', true);
         addCapability(GameCapability.CARNIVOREEDIBLE);
     }
 }
