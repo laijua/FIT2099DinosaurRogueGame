@@ -27,8 +27,6 @@ public class Dirt extends Ground {
 	 */
 	@Override
 	public void tick(Location location) {
-
-		//System.out.println(location.getExits());
 		Integer counter = 0;
 		for(Exit exit:location.getExits()){
 			if (exit.getDestination().getGround() instanceof Grass){
@@ -37,7 +35,6 @@ public class Dirt extends Ground {
 			if (counter ==2 && Math.random()<GRASSGROWNOTHERGRASS){
 				((GameMapModified)location.map()).increaseEcopoints(1);
 				location.setGround(new Grass());
-				// No point continuing with the for loop
 				break;
 			}
 			if(exit.getDestination().getGround() instanceof Tree && Math.random()<GRASSGROWNNEXTTOTREE){
@@ -45,7 +42,6 @@ public class Dirt extends Ground {
 				break;
 			}
 
-			//System.out.println('j');
 
 		}
 	}

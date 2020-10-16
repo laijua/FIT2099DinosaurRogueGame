@@ -25,6 +25,10 @@ public class WorldModified extends World {
     super(display);
   }
 
+  /**
+   * Grabs a reference to ecopoints so that other classes can interact and add to current Balance
+   * @param gameMap the GameMap to add
+   */
   @Override
   public void addGameMap(GameMap gameMap) {
     super.addGameMap(gameMap);
@@ -32,9 +36,13 @@ public class WorldModified extends World {
 
   }
 
+  /**
+   * Depending on what Actions has occured then
+   * @param actor the Actor whose turn it is.
+   */
   @Override
   protected void processActorTurn(Actor actor) {
-    System.out.println("Ecopoints Balance: "+ecopoints.getEcopoints());
+
     Location here = actorLocations.locationOf(actor);
     GameMap map = here.map();
 
@@ -79,5 +87,47 @@ public class WorldModified extends World {
 
     String result = action.execute(actor, map);
     display.println(result);
+  }
+  /**
+   * Run the game.
+   *
+   * On each iteration the gameloop does the following: - displays the player's
+   * map - processes the actions of every Actor in the game, regardless of map
+   *
+   * We could either only process the actors on the current map, which would make
+   * time stop on the other maps, or we could process all the actors. We chose to
+   * process all the actors.
+   *
+   * @throws IllegalStateException if the player doesn't exist
+   */
+  @Override
+  public void run() {
+    if (player == null)
+      throw new IllegalStateException();
+
+    // initialize the last action map to nothing actions;
+    for (Actor actor : actorLocations) {
+      lastActionMap.put(actor, new DoNothingAction());
+    }
+
+    // This loop is basically the whole game
+    while (stillRunning()) {
+      System.out.println("Ecopoints Balance: "+ecopoints.getEcopoints());
+      GameMap playersMap = actorLocations.locationOf(player).map();
+      playersMap.draw(display);
+
+      // Process all the actors.
+      for (Actor actor : actorLocations) {
+        if (stillRunning())
+          processActorTurn(actor);
+      }
+
+      // Tick over all the maps. For the map stuff.
+      for (GameMap gameMap : gameMaps) {
+        gameMap.tick();
+      }
+
+    }
+    display.println(endGameMessage());
   }
 }

@@ -4,13 +4,22 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * A class that represents a type ground that can be seen in the map
+ */
 public class Tree extends Ground {
+	private final double DROPFRUITPERCENT = 0.1;
 	private int age = 0;
 	private boolean droppedFruit = false;
 	public Tree() {
 		super('+');
 	}
 
+	/**
+	 * A chance to Drop Fruit, a decays a fruit if it already exists and ages Trees depending on
+	 * its age
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
@@ -24,10 +33,8 @@ public class Tree extends Ground {
 		if (droppedFruit) {
 			for (Integer i = 0;i<location.getItems().size();i++) {
 				Item item = location.getItems().get(i);
-//				System.out.println("test");
 				if (item instanceof Fruit) {
 					((Fruit) item).decayFruit();
-//					System.out.println("Time until Fruit Decayed:" + ((Fruit) item).getDecay()+", x= "+location.x()+"y= "+location.y());
 					if (((Fruit) item).getDecay() == 0) {
 						location.removeItem(item);
 						droppedFruit = false;
@@ -35,7 +42,7 @@ public class Tree extends Ground {
 				}
 			}
 		}
-		if (!droppedFruit && Math.random()<0.1){
+		if (!droppedFruit && Math.random()<DROPFRUITPERCENT){
 			Fruit fruit = new Fruit(10,"Fruit",'F',true);
 			location.addItem(fruit);
 			droppedFruit = true;
@@ -43,7 +50,5 @@ public class Tree extends Ground {
 	}
 }
 
-//		if (Math.random()<0.05 && location.getItems().){
-//
-//		}
+
 

@@ -1,14 +1,16 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.WeaponItem;
-import java.util.List;
 
+/**
+ * A class that represents a LaserGun that Player can use
+ * only purchasable via VendingMachine
+ */
 public class LaserGun extends WeaponItem {
 
   /**
    * Constructor.
-   *
+   * Initialize all the params in Weapon item,
    * @param name        name of the item
    * @param displayChar character to use for display when item is on the ground
    * @param damage      amount of damage this weapon does
@@ -18,8 +20,4 @@ public class LaserGun extends WeaponItem {
     super(name, displayChar, damage, verb);
   }
 
-  @Override
-  public List<Action> getAllowableActions() {
-    return super.getAllowableActions();
-  }
 }

@@ -11,20 +11,9 @@ public class GameMapModified extends GameMap {
   private Ecopoints ecopoints;
   private Integer grassGrown = 0;
 
-
-  public GameMapModified(GroundFactory groundFactory, char groundChar,
-      int width,
-      int height) {
-    super(groundFactory, groundChar, width, height);
-  }
-
   public GameMapModified(GroundFactory groundFactory, List<String> lines) {
     super(groundFactory,lines);
     beginnngGrowGrass(groundFactory, lines);
-  }
-
-  public GameMapModified(GroundFactory groundFactory, String mapFile) throws IOException {
-    super(groundFactory, mapFile);
   }
 
   /**
@@ -51,14 +40,28 @@ public class GameMapModified extends GameMap {
       }
     }
   }
+
+  /**
+   * Grabs reference to Ecopoints through the World Class
+   * @param ecopoints
+   */
   public void initializeEcopoints(Ecopoints ecopoints){
     this.ecopoints = ecopoints;
     this.ecopoints.addEcopoints(grassGrown);
   }
 
+  /**
+   * Increases Ecopoints balance
+   * @param val Integer added onto the current ecopoints balance
+   */
   public void increaseEcopoints(Integer val) {
     this.ecopoints.addEcopoints(val);
   }
+
+  /**
+   * Getters methods that returns the total amount of ecopoints balance the current player has
+   * @return Integer Value representing the current balance
+   */
   public Integer getEcopoints(){
     return ecopoints.getEcopoints();
   }

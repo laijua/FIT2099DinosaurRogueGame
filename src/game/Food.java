@@ -3,20 +3,42 @@ package game;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
+/**
+ * A class that represents an Item that is edible to the dinosaurs
+ */
 public abstract class Food extends Item {
   private int foodLevelPoint;
   private double percentPickUp = 1.5;
 
+  /**
+   * Constructor.
+   * Params for the Item constructor, foodlevelpoints indicate how much should it replenish the dinosaur
+   * @param foodLevelPoint Integer replenishing Dinosaur amount
+   * @param name Name of the Food
+   * @param displayChar Char that represents the food
+   * @param portable IF it is portable or if it is not
+   */
   public Food(int foodLevelPoint,String name, char displayChar, boolean portable) {
     super(name, displayChar, portable);
     this.foodLevelPoint = foodLevelPoint;
 
   }
+
+  /**
+   *Constructor.
+   * Similar to the constructor above, but with another param percentPickUp, which fails to pick up item
+   * @param percentPickUp Double that represents the chances of picking up an Item
+   */
   public Food(int foodLevelPoint,String name, char displayChar, boolean portable,double percentPickUp) {
     super(name, displayChar, portable);
     this.foodLevelPoint = foodLevelPoint;
     this.percentPickUp = percentPickUp;
   }
+
+  /**
+   * There is is a chance that picking up an Food item might fail, which returns a different Action
+   * @return an Action that either Picks up item or does not
+   */
   @Override
   public PickUpItemAction getPickUpAction() {
     if(portable && Math.random()< percentPickUp)
@@ -24,6 +46,10 @@ public abstract class Food extends Item {
     return new FailPickUpItemAction(this);
   }
 
+  /**
+   * Simpler Getter that tells us how much it replrenish the animals
+   * @return Integer Val
+   */
   public int getFoodLevelPoint() {
     return foodLevelPoint;
   }

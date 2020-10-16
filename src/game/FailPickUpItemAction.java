@@ -6,18 +6,22 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
+/**
+ *  Similar to PickUpItemAction just in execute it does nothing but return a failed pick up item
+ *  message
+ */
 public class FailPickUpItemAction extends PickUpItemAction {
 
   /**
    * Constructor.
-   *
+   *Initialize the item to fail
    * @param item the item to pick up
    */
   public FailPickUpItemAction(Item item) {
     super(item);
   }
   /**
-   * Add the item to the actor's inventory.
+   * Does nothing but return fail pick up message
    *
    * @see Action#execute(Actor, GameMap)
    * @param actor The actor performing the action.

@@ -26,6 +26,16 @@ public class Player extends Actor {
 		super(name, displayChar, hitPoints);
 	}
 
+	/**
+	 * Select and return an action to perform on the current turn.
+	 * If there is a grass as a neighbour, then provide a harvestAction
+	 * If player has item and can feed to dinosaur that is nearby then provide a Feedaction as an option
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return A collections of Actions
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
