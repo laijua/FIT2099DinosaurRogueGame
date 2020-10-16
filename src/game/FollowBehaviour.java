@@ -19,6 +19,12 @@ public class FollowBehaviour extends CommonStuffBehaviour {
 		this.target = subject;
 	}
 
+	/**
+	 * returns the action determined by the behaviour
+	 * @param actor the Actor acting
+	 * @param map the GameMap containing the Actor
+	 * @return the action determined by the behaviour
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))

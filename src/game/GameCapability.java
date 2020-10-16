@@ -1,8 +1,10 @@
 package game;
 
+/**
+ * Capabilities within the game
+ */
 public enum GameCapability {
     CARNIVOREEDIBLE,
     HERBIVOREEDIBLE,
-    ALLOSAURATTACKABLE
+    CARNIVOREATTACKABLE
 }
-// caps in both egg and allosaur

@@ -2,8 +2,16 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Behaviour for finding food
+ */
 public class SeekFoodBehaviour extends CommonStuffBehaviour {
-
+    /**
+     * Method to determine what to do when finding food
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return an action to do when finding food
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dinosaur = (Dinosaur) actor;
@@ -15,7 +23,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
             int dinoX = dinosaurLocation.x();
             int dinoY = dinosaurLocation.y();
 
-
+            // grazes on grass that it is on top of
             if (dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
                 if (dinosaurLocation.getGround() instanceof Grass) {
                     dinosaurLocation.setGround(new Dirt());
@@ -25,7 +33,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                 }
 
             }
-
+            // check if any food source in range
             for (int x : dinosaurSearchRadius) {
                 for (int y : dinosaurSearchRadius) {
                     if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
@@ -42,6 +50,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                                         }
                                     }
                                     if (canEat) {
+                                        // eat food if dinosaur is next to it
                                         if (distance(dinosaurLocation, location) == 1) {
 
                                             dinosaur.increaseFoodLevel(food.getFoodLevelPoint());
@@ -50,6 +59,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                                             return null;
 
                                         }
+                                        // move towards food source
                                         Location there = location;
                                         int currentDistance = distance(dinosaurLocation, there);
                                         for (Exit exit : dinosaurLocation.getExits()) {
@@ -67,6 +77,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                                 }
                             }
                         }
+                        // moves towards grass
                         if (location.getGround() instanceof Grass && dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
                             int currentDistance = distance(dinosaurLocation, location);
                             for (Exit exit : dinosaurLocation.getExits()) {
@@ -85,7 +96,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
 
                 }
             }
-
+            // moves towards a prey
             if (dinosaur.getEdibleType() == GameCapability.CARNIVOREEDIBLE) {
                 for (int x : dinosaurSearchRadius) {
                     for (int y : dinosaurSearchRadius) {
@@ -94,7 +105,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                             if (location.containsAnActor()) {
                                 if (location.getActor() instanceof Dinosaur) {
                                     Dinosaur target = (Dinosaur) location.getActor();
-                                    if (target.hasCapability(GameCapability.ALLOSAURATTACKABLE)) {
+                                    if (target.hasCapability(GameCapability.CARNIVOREATTACKABLE)) {
                                         return new FollowBehaviour(target).getAction(actor, map);
                                     }
                                 }

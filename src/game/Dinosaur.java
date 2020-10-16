@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 
+/**
+ * An abstract Dinosaur class
+ */
 public abstract class Dinosaur extends Actor {
     private int foodLevel;
     private int turnAge;
@@ -14,16 +17,17 @@ public abstract class Dinosaur extends Actor {
     private Enum<?> edibleType;
     private int unconsciousTurns = 0;
     private boolean unconscious = false;
-
-
     private ArrayList<Behaviour> behaviour;
-
 
     /**
      * Constructor.
-     * All Dinosaurs are represented by a 'd' and have 100 hit points.
-     *
-     * @param name the name of this Stegosaur
+     * @param name the name of the dinosaur in String
+     * @param foodLevel the food level of the dinosaur in int
+     * @param turnAge the age of the dinosaur in int
+     * @param male boolean to determine gender of dinosaur
+     * @param behaviour arraylist of behaviours of dinosaur
+     * @param edibleType Enum to determine what dinosaur can eat
+     * @param displayChar the display character on the console for the dinosaur
      */
     public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, Enum<?> edibleType, char displayChar) {
         super(name, displayChar, 100);
@@ -48,27 +52,40 @@ public abstract class Dinosaur extends Actor {
 
     }
 
+    /**
+     * Returns a collection of the Actions that the otherActor can do to the current Actor.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return allowable actions
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         return new Actions(new AttackAction(this));
     }
 
-    /**
-     * Figure out what to do next.
-     * <p>
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
-     * just stands there.  That's boring.
-     *
-     * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-     */
 
+    /**
+     * Select and return an action to perform on the current turn.
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         final int DEATHTURN = 1;
         final int ADULTAGE = 30;
         turnAge++;
-        if (turnAge > ADULTAGE)
+        if (turnAge > ADULTAGE){
             adult = true;
+        }
+
+        if (foodLevel > 0) {
+            unconscious = false;
+        }
+
         if (!unconscious) {
 
             foodLevel--;
@@ -105,34 +122,66 @@ public abstract class Dinosaur extends Actor {
         return new DoNothingAction();
     }
 
+    /**
+     * checks what gender dinosaur is
+     * @return boolean. true if male, false otherwise
+     */
     boolean isMale() {
         return male;
     }
 
+    /**
+     * checks if dinosaur is an adult
+     * @return boolean. true if dinosaur is adult, false otherwise
+     */
     boolean isAdult() {
         return adult;
     }
 
+    /**
+     * increases food level of dinosaur
+     * @param foodLevel food level to increase by
+     */
     public void increaseFoodLevel(int foodLevel) {
+        if (foodLevel < 0) {
+            throw new ArithmeticException("foodLevel cant be below 0");
+        }
         this.foodLevel += foodLevel;
+        if (this.foodLevel > 100) {
+            this.foodLevel = 100;
+        }
     }
 
+    /**
+     * returns the type of food the dinosaur can eat
+     * @return Enum representing the capability of type of food the dinosaur can eat
+     */
     public Enum<?> getEdibleType() {
         return edibleType;
     }
 
+    /**
+     * makes the dinosaur pregnant if it is female
+     */
     public void impregnate() {
         if (!male) {
             pregnant = true;
         }
     }
 
+    /**
+     * returns true if the dinosaur is pregnant
+     * @return true if the dinosaur is pregnant, false otherwise
+     */
     public boolean isPregnant() {
         return pregnant;
     }
 
+    /**
+     * returns the food level of the dinosaur
+     * @return food level of the dinosaur
+     */
     public int getFoodLevel() {
         return foodLevel;
     }
-
 }

@@ -2,8 +2,16 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * A class for determining if dinosaurs can breed
+ */
 public class BreedingBehaviour extends CommonStuffBehaviour {
-
+    /**
+     * Determines if actor should breed or follow a potential breeding partner
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return An action to follow
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         final int WELLFEDFOODLEVEL = 50;
@@ -13,7 +21,7 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
             int dinoX = dinosaurLocation.x();
             int dinoY = dinosaurLocation.y();
 
-
+            // breed next to opposite sex dinosaur of same kind
             for (int x : dinosaurInteractionRadius) {
                 for (int y : dinosaurInteractionRadius) {
                     if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
@@ -34,7 +42,7 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
                     }
                 }
             }
-
+            // follow opposite sex dinosaur of same kind
             for (int x : dinosaurSearchRadius) {
                 for (int y : dinosaurSearchRadius) {
                     if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
