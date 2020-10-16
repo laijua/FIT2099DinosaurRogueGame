@@ -20,7 +20,7 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
                     if (location.getActor().getClass() == dinosaur.getClass()) {
                         Dinosaur otherDinosaur = (Dinosaur) location.getActor();
                         if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
-                            if (otherDinosaur.isAdult()) {
+                            if (otherDinosaur.isAdult() && !otherDinosaur.isPregnant()) {
                                 otherDinosaur.impregnate();
                                 dinosaur.impregnate();
                                 System.out.println(actor + " and " + otherDinosaur + " have bred");
@@ -40,7 +40,7 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
                         if (location.getActor().getClass() == dinosaur.getClass()) {
                             Dinosaur otherDinosaur = (Dinosaur) location.getActor();
                             if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
-                                if (otherDinosaur.isAdult()) {
+                                if (otherDinosaur.isAdult() && !otherDinosaur.isPregnant()) {
                                     return new FollowBehaviour(otherDinosaur).getAction(actor, map);
                                 }
                             }

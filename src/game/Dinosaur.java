@@ -75,7 +75,8 @@ public abstract class Dinosaur extends Actor {
 
             if (pregnant) {
                 pregnantCounter++;
-                if (pregnantCounter >= 1) {
+                if (pregnantCounter >= 5) {
+                    pregnant = false;
                     pregnantCounter = 0;
                     return new LayEggAction(this);
                 }
@@ -88,7 +89,7 @@ public abstract class Dinosaur extends Actor {
                 if (action != null) {
                     return action;
                 }
-            } else if (foodLevel > wellFedFoodLevel && isAdult()) {
+            } else if (foodLevel > wellFedFoodLevel && isAdult() && !pregnant) {
                 BreedingBehaviour breedingBehaviour = new BreedingBehaviour();
                 Action action = breedingBehaviour.getAction(this, map);
                 if (action != null) {
@@ -137,6 +138,10 @@ public abstract class Dinosaur extends Actor {
         if (!male){
             pregnant = true;
         }
+    }
+
+    public boolean isPregnant(){
+        return pregnant;
     }
 
 }

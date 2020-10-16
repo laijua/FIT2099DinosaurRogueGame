@@ -12,10 +12,8 @@ public class AttackBehaviour extends CommonStuffBehaviour {
         int dinoX = dinosaurLocation.x();
         int dinoY = dinosaurLocation.y();
 
-        int[] dinosaurAttackRadius = {0, 1, -1};
-
-        for (int x : dinosaurAttackRadius) {
-            for (int y : dinosaurAttackRadius) {
+        for (int x : dinosaurInteractionRadius) {
+            for (int y : dinosaurInteractionRadius) {
                 if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
                     Location location = map.at(dinoX + x, dinoY + y);
                     if (map.isAnActorAt(location)) {
