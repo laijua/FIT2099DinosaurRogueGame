@@ -30,10 +30,6 @@ public class AttackBehaviour extends CommonStuffBehaviour {
                             if (target.hasCapability(GameCapability.CARNIVOREATTACKABLE)) {
                                 return new AttackAction(target);
                             }
-                            //for (Exit exit : map.locationOf(actor).getExits()) {
-                            //            Location destination = exit.getDestination();
-                            //            if (destination.getActorAt(location)) {
-                            // keep calling exits on current exits
                         }
                     }
                 }
