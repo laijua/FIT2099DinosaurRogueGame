@@ -23,7 +23,7 @@ public class Egg extends Food {
         boolean male = Math.random()*2 == 1;
         Constructor c = dinosaurToHatch.getConstructors()[0];
         try {
-            return ((Dinosaur) c.newInstance(dinosaurToHatch.getName().replace("game.",""), 10, 0, male));
+            return ((Dinosaur) c.newInstance(dinosaurToHatch.getSimpleName(), 10, 0, male));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -39,7 +39,7 @@ public class Egg extends Food {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
         eggAge ++;
-        if (eggAge >= 2 && !currentLocation.containsAnActor()){
+        if (eggAge >= 10 && !currentLocation.containsAnActor()){
             System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);

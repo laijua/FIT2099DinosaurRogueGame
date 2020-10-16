@@ -13,13 +13,10 @@ public abstract class Dinosaur extends Actor {
     private int pregnantCounter = 0;
     private Enum<?> edibleType;
     private int unconsciousTurns = 0;
-    private int deathTurn = 20;
     private boolean unconscious = false;
 
 
-//    private Capabilities capabilities;
     private ArrayList<Behaviour> behaviour;
-
 
 
     /**
@@ -30,16 +27,16 @@ public abstract class Dinosaur extends Actor {
      */
     public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, Enum<?> edibleType, char displayChar) {
         super(name, displayChar, 100);
-        if (foodLevel < 0){
+        if (foodLevel < 0) {
             throw new ArithmeticException("foodLevel cant be below 0");
         }
-        if (foodLevel > 100){
+        if (foodLevel > 100) {
             throw new ArithmeticException("foodLevel cant be above 100");
         }
-        if (turnAge < 0){
+        if (turnAge < 0) {
             throw new ArithmeticException("age cant be below 0");
         }
-        if(behaviour == null){
+        if (behaviour == null) {
             throw new NullPointerException("behaviour cant be null");
         }
 
@@ -49,7 +46,6 @@ public abstract class Dinosaur extends Actor {
         this.behaviour = behaviour;
         this.edibleType = edibleType;
 
-//        this.behaviour.add(new WanderBehaviour());
     }
 
     @Override
@@ -68,15 +64,16 @@ public abstract class Dinosaur extends Actor {
 
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        final int DEATHTURN = 1;
+        final int ADULTAGE = 30;
         turnAge++;
-        if (turnAge > 30)
+        if (turnAge > ADULTAGE)
             adult = true;
         if (!unconscious) {
 
             foodLevel--;
             if (foodLevel <= 0) {
                 unconscious = true;
-//                return null;
             }
 
 
@@ -90,7 +87,6 @@ public abstract class Dinosaur extends Actor {
             }
 
 
-
             for (Behaviour behaviours : behaviour) {
                 Action action = behaviours.getAction(this, map);
                 if (action != null) {
@@ -98,15 +94,12 @@ public abstract class Dinosaur extends Actor {
                 }
             }
 
-        }
-        else{
+        } else {
             unconsciousTurns++;
-            if (unconsciousTurns >= deathTurn) {
+            if (unconsciousTurns >= DEATHTURN) {
                 return new DieAction();
             }
         }
-
-
 
 
         return new DoNothingAction();
@@ -128,17 +121,17 @@ public abstract class Dinosaur extends Actor {
         return edibleType;
     }
 
-    public void impregnate(){
-        if (!male){
+    public void impregnate() {
+        if (!male) {
             pregnant = true;
         }
     }
 
-    public boolean isPregnant(){
+    public boolean isPregnant() {
         return pregnant;
     }
 
-    public int getFoodLevel(){
+    public int getFoodLevel() {
         return foodLevel;
     }
 

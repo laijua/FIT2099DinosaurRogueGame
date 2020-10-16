@@ -8,10 +8,13 @@ import edu.monash.fit2099.engine.Location;
 public class DieAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
+        int x = map.locationOf(actor).x();
+        int y = map.locationOf(actor).y();
         Location dinosaurLocation = map.locationOf(actor);
         dinosaurLocation.addItem(new DinosaurCorpse());
         map.removeActor(actor);
-        return menuDescription(actor);
+        return actor + " at " + "(" + x + ", " + y + ") dies";
+
     }
 
     @Override

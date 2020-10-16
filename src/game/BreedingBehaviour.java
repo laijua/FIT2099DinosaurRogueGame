@@ -6,9 +6,9 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        int wellFedFoodLevel = 50;
+        final int WELLFEDFOODLEVEL = 50;
         Dinosaur dinosaur = (Dinosaur) actor;
-        if (dinosaur.getFoodLevel() > wellFedFoodLevel && dinosaur.isAdult() && !dinosaur.isPregnant()){
+        if (dinosaur.getFoodLevel() > WELLFEDFOODLEVEL && dinosaur.isAdult() && !dinosaur.isPregnant()) {
             Location dinosaurLocation = map.locationOf(actor);
             int dinoX = dinosaurLocation.x();
             int dinoY = dinosaurLocation.y();
@@ -16,16 +16,18 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
 
             for (int x : dinosaurInteractionRadius) {
                 for (int y : dinosaurInteractionRadius) {
-                    Location location = map.at(dinoX + x, dinoY + y);
-                    if (location.containsAnActor()) {
-                        if (location.getActor().getClass() == dinosaur.getClass()) {
-                            Dinosaur otherDinosaur = (Dinosaur) location.getActor();
-                            if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
-                                if (otherDinosaur.isAdult() && !otherDinosaur.isPregnant()) {
-                                    otherDinosaur.impregnate();
-                                    dinosaur.impregnate();
-                                    System.out.println(actor + " and " + otherDinosaur + " have bred");
-                                    return null;
+                    if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
+                        Location location = map.at(dinoX + x, dinoY + y);
+                        if (location.containsAnActor()) {
+                            if (location.getActor().getClass() == dinosaur.getClass()) {
+                                Dinosaur otherDinosaur = (Dinosaur) location.getActor();
+                                if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
+                                    if (otherDinosaur.isAdult() && !otherDinosaur.isPregnant()) {
+                                        otherDinosaur.impregnate();
+                                        dinosaur.impregnate();
+                                        System.out.println(actor + " and " + otherDinosaur + " have bred");
+                                        return null;
+                                    }
                                 }
                             }
                         }

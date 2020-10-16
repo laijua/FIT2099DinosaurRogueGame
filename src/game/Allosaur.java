@@ -10,6 +10,10 @@ import java.util.ArrayList;
  */
 public class Allosaur extends Dinosaur {
 
+    public Allosaur(String name, int foodLevel, int turnAge, boolean male) {
+        super(name, foodLevel, turnAge, male, allosaurBehaviour(), GameCapability.CARNIVOREEDIBLE, 'A');
+    }
+
     private static ArrayList<Behaviour> allosaurBehaviour(){
         ArrayList<Behaviour> behaviours = new ArrayList<>();
         behaviours.add(new SeekFoodBehaviour());
@@ -19,16 +23,7 @@ public class Allosaur extends Dinosaur {
         return behaviours;
     }
 
-    public Allosaur(String name, int foodLevel, int turnAge, boolean male) {
-        super(name, foodLevel, turnAge, male, allosaurBehaviour(), GameCapability.CARNIVOREEDIBLE, 'A');
-    }
-
-//    @Override
-//    public String toString() {
-//        return "Allosaur";
-//    }
-
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(100, "bites");
+        return new IntrinsicWeapon(40, "bites");
     }
 }
