@@ -21,12 +21,13 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Constructor.
-     * @param name the name of the dinosaur in String
-     * @param foodLevel the food level of the dinosaur in int
-     * @param turnAge the age of the dinosaur in int
-     * @param male boolean to determine gender of dinosaur
-     * @param behaviour arraylist of behaviours of dinosaur
-     * @param edibleType Enum to determine what dinosaur can eat
+     *
+     * @param name        the name of the dinosaur in String
+     * @param foodLevel   the food level of the dinosaur in int
+     * @param turnAge     the age of the dinosaur in int
+     * @param male        boolean to determine gender of dinosaur
+     * @param behaviour   arraylist of behaviours of dinosaur
+     * @param edibleType  Enum to determine what dinosaur can eat
      * @param displayChar the display character on the console for the dinosaur
      */
     public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, Enum<?> edibleType, char displayChar) {
@@ -54,6 +55,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Returns a collection of the Actions that the otherActor can do to the current Actor.
+     *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -67,6 +69,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Select and return an action to perform on the current turn.
+     *
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
@@ -75,15 +78,20 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+
+        int x = map.locationOf(this).x();
+        int y = map.locationOf(this).y();
+
         final int DEATHTURN = 1;
         final int ADULTAGE = 30;
         turnAge++;
-        if (turnAge > ADULTAGE){
+        if (turnAge > ADULTAGE) {
             adult = true;
         }
 
         if (foodLevel > 0) {
             unconscious = false;
+            System.out.println(this + " at " + "(" + x + ", " + y + ") is back from being unconcious");
         }
 
         if (!unconscious) {
@@ -91,6 +99,7 @@ public abstract class Dinosaur extends Actor {
             foodLevel--;
             if (foodLevel <= 0) {
                 unconscious = true;
+                System.out.println(this + " at " + "(" + x + ", " + y + ") is unconcious");
             }
 
 
@@ -124,6 +133,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * checks what gender dinosaur is
+     *
      * @return boolean. true if male, false otherwise
      */
     boolean isMale() {
@@ -132,6 +142,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * checks if dinosaur is an adult
+     *
      * @return boolean. true if dinosaur is adult, false otherwise
      */
     boolean isAdult() {
@@ -140,6 +151,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * increases food level of dinosaur
+     *
      * @param foodLevel food level to increase by
      */
     public void increaseFoodLevel(int foodLevel) {
@@ -154,6 +166,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * returns the type of food the dinosaur can eat
+     *
      * @return Enum representing the capability of type of food the dinosaur can eat
      */
     public Enum<?> getEdibleType() {
@@ -171,6 +184,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * returns true if the dinosaur is pregnant
+     *
      * @return true if the dinosaur is pregnant, false otherwise
      */
     public boolean isPregnant() {
@@ -179,6 +193,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * returns the food level of the dinosaur
+     *
      * @return food level of the dinosaur
      */
     public int getFoodLevel() {
