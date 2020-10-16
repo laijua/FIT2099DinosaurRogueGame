@@ -53,7 +53,6 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
                 }
             }
         }
-
         return null;
     }
 }

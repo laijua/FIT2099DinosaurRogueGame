@@ -7,11 +7,11 @@ public class AttackBehaviour extends CommonStuffBehaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
 
-        // attacks if next
         Location dinosaurLocation = map.locationOf(actor);
         int dinoX = dinosaurLocation.x();
         int dinoY = dinosaurLocation.y();
 
+        // attacks if next to prey
         for (int x : dinosaurInteractionRadius) {
             for (int y : dinosaurInteractionRadius) {
                 if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
@@ -27,9 +27,7 @@ public class AttackBehaviour extends CommonStuffBehaviour {
                 }
             }
         }
-//pasted from seek food behaviour
-        // chases
-
+        // goes after a prey if any
         for (int x : dinosaurSearchRadius) {
             for (int y : dinosaurSearchRadius) {
                 if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {

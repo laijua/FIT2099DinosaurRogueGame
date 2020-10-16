@@ -9,17 +9,15 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
         Dinosaur dinosaur = (Dinosaur) actor;
 
         final int HUNGRYFOODLEVEL = 15;
-        if(dinosaur.getFoodLevel() < HUNGRYFOODLEVEL){
-            System.out.println(dinosaur + " at " +  "("+ map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") is getting hungry!");
+        if (dinosaur.getFoodLevel() < HUNGRYFOODLEVEL) {
+            System.out.println(dinosaur + " at " + "(" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") is getting hungry!");
             Location dinosaurLocation = map.locationOf(actor);
             int dinoX = dinosaurLocation.x();
             int dinoY = dinosaurLocation.y();
 
-            ;
 
             if (dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
                 if (dinosaurLocation.getGround() instanceof Grass) {
-
                     dinosaurLocation.setGround(new Dirt());
                     dinosaur.increaseFoodLevel(5);
                     System.out.println(actor + " at " + "(" + dinoX + ", " + dinoY + ") eats Grass");
@@ -66,9 +64,6 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                                             }
                                         }
                                     }
-//                            if (!location.containsAnActor()) {
-//                                return new MoveActorAction(location, "");
-//                            }
                                 }
                             }
                         }
@@ -109,24 +104,8 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                 }
             }
         }
-
-
-
-
-
         return null;
     }
-
-//    /**
-//     * Compute the Manhattan distance between two locations.
-//     *
-//     * @param a the first location
-//     * @param b the first location
-//     * @return the number of steps between a and b if you only move in the four cardinal directions.
-//     */
-//    private int distance(Location a, Location b) {
-//        return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
-//    }
 }
 
 
