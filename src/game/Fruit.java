@@ -1,7 +1,5 @@
 package game;
 
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.PickUpItemAction;
 
 /**
  * An Food item class that can be dropped via Trees or purchaseable.
