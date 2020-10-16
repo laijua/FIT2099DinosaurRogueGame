@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Capabilities;
 import edu.monash.fit2099.engine.Location;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,13 +21,13 @@ public class Egg extends Food {
 
     public Dinosaur hatch() {
         boolean male = Math.random()*2 == 1;
+        Constructor c = dinosaurToHatch.getConstructors()[0];
+        try {
+            return ((Dinosaur) c.newInstance(dinosaurToHatch.getName().replace("game.",""), 10, 0, male));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        if (dinosaurToHatch == Stegosaur.class){
-            return new Stegosaur("Stegosaur", 10, 0, male) ;
-        }
-        else if (dinosaurToHatch == Allosaur.class){
-            return new Allosaur("Allosaur", 10, 0, male)  ;
-        }
         return null;
     }
 
@@ -38,7 +39,7 @@ public class Egg extends Food {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
         eggAge ++;
-        if (eggAge >= 10 && !currentLocation.containsAnActor()){
+        if (eggAge >= 2 && !currentLocation.containsAnActor()){
             System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);
