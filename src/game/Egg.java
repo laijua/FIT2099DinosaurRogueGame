@@ -57,6 +57,7 @@ public class Egg extends Food {
         eggAge ++;
         if (eggAge >= 10 && !currentLocation.containsAnActor()){
             System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
+            ((GameMapModified)currentLocation.map()).increaseEcopoints(dinosaurToHatch==Allosaur.class?1000:100);
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);
         }
