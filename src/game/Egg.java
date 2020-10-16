@@ -22,10 +22,10 @@ public class Egg extends Food {
         boolean male = Math.random()*2 == 1;
 
         if (dinosaurToHatch == Stegosaur.class){
-            return new Stegosaur("Stegosaur", 50, 0, male) ;
+            return new Stegosaur("Stegosaur", 10, 0, male) ;
         }
         else if (dinosaurToHatch == Allosaur.class){
-            return new Allosaur("Allosaur", 50, 0, male)  ;
+            return new Allosaur("Allosaur", 10, 0, male)  ;
         }
         return null;
     }
