@@ -38,3 +38,18 @@ Javadoc will be written as we have finished reviewed the given tasks.
   I,Kenny accept this WBA  
   I, Michael-Laifu Chhua accept this WBA
 
+# Work Breakdown Agreement Assignment 3
+Task | Estimate completion date  | by|Review date and by whom
+---------|----------|---------|---------
+ Water| 6/10 | Kenny |5/11-6/11 
+ Thirst | 6/10 | Michael| 5/11-6/11 
+ Updating Vending Machine | 6/10 | Kenny| 5/11-6/11 
+ Eco points in regards to new animals | 6/10 | Kenny| 5/11-6/11
+ Agilisaurus | 6/10 | Michael| 5/11-6/11 
+ Archaeopteryx | 6/10 | Michael| 5/11-6/11 
+ Second Map | 6/10 | Kenny | 5/11-6/11 
+ Game Driver | 6/10 | Kenny | 5/11-6/11 
+ Recommendations for extensions to the game engine | 6/10 | BOTH | 5/11-6/11
+___
+ I,Kenny accept this WBA  
+
