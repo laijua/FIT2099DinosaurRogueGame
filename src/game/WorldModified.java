@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.World;
+import java.util.ArrayList;
 
 public class WorldModified extends World {
 
@@ -72,6 +73,15 @@ public class WorldModified extends World {
       actions.add(item.getPickUpAction());
     }
     actions.add(new DoNothingAction());
+    // IF player is currently in the bottom map with y coordinates = 0 and go to top map
+    if (actor instanceof Player && here.y() == 0 && !((GameMapModified)map).isTopMap()){
+      actions.add(new MoveMapAction(this,true));
+    }else if (actor instanceof Player && here.y() == 24 && ((GameMapModified)map).isTopMap()){
+      actions.add(new MoveMapAction(this,false));
+    }
+
+
+
 
     Action action = actor.playTurn(actions, lastActionMap.get(actor), map, display);
     if (action instanceof HarvestAction){
@@ -126,5 +136,12 @@ public class WorldModified extends World {
 
     }
     display.println(endGameMessage());
+  }
+  /**
+   * Simple Getter that returns arraylist used to change players map
+   * @return  Gamemaps Arraylist
+   */
+  public ArrayList<GameMap> getGameMap() {
+    return this.gameMaps;
   }
 }

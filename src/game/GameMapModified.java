@@ -7,10 +7,12 @@ import java.util.List;
 public class GameMapModified extends GameMap {
   private Ecopoints ecopoints;
   private Integer grassGrown = 0;
+  private Boolean topMap= false;
 
-  public GameMapModified(GroundFactory groundFactory, List<String> lines) {
+  public GameMapModified(GroundFactory groundFactory, List<String> lines,Boolean topMap) {
     super(groundFactory,lines);
     beginnngGrowGrass(groundFactory, lines);
+    this.topMap = topMap;
   }
 
   /**
@@ -61,5 +63,13 @@ public class GameMapModified extends GameMap {
    */
   public Integer getEcopoints(){
     return ecopoints.getEcopoints();
+  }
+
+  /**
+   * Tells us whether or not we are in the top map or not.
+   * @return
+   */
+  public Boolean isTopMap() {
+    return topMap;
   }
 }
