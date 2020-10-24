@@ -9,7 +9,7 @@ public class Hay extends Food {
    * Also adds capability if the type of dinosaur is able to eat it.
    */
   public Hay() {
-    super(20,"Hay",'H',true);
+    super(20,"Hay",'H',true,10);
     addCapability(GameCapability.HERBIVOREEDIBLE);
   }
 }

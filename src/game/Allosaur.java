@@ -18,7 +18,7 @@ public class Allosaur extends Dinosaur {
      * @param male      Boolean to tell if Allosaur is male or not
      */
     public Allosaur(String name, int foodLevel, int turnAge, boolean male) {
-        super(name, foodLevel, turnAge, male, allosaurBehaviour(), GameCapability.CARNIVOREEDIBLE, 'A');
+        super(name, foodLevel, turnAge, male, allosaurBehaviour(), GameCapability.CARNIVOREEDIBLE, 'A',1000);
     }
 
     /**

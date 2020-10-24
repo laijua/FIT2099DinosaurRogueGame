@@ -14,7 +14,7 @@ public class Fruit extends Food {
    * @param portable true if and only if the Item can be picked up
    */
   public Fruit(String name, char displayChar, boolean portable) {
-    super(30,name, displayChar, portable,0.6);
+    super(30,name, displayChar, portable,0.6,15);
     addCapability(GameCapability.HERBIVOREEDIBLE);
   }
 

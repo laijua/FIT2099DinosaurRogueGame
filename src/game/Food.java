@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.PickUpItemAction;
 public abstract class Food extends Item {
   private int foodLevelPoint;
   private double percentPickUp = 1.5;
+  private int ecopoints;
 
   /**
    * Constructor.
@@ -18,9 +19,10 @@ public abstract class Food extends Item {
    * @param displayChar Char that represents the food
    * @param portable IF it is portable or if it is not
    */
-  public Food(int foodLevelPoint,String name, char displayChar, boolean portable) {
+  public Food(int foodLevelPoint,String name, char displayChar, boolean portable,Integer ecopoints) {
     super(name, displayChar, portable);
     this.foodLevelPoint = foodLevelPoint;
+    this.ecopoints = ecopoints;
 
   }
 
@@ -29,10 +31,11 @@ public abstract class Food extends Item {
    * Similar to the constructor above, but with another param percentPickUp, which fails to pick up item
    * @param percentPickUp Double that represents the chances of picking up an Item
    */
-  public Food(int foodLevelPoint,String name, char displayChar, boolean portable,double percentPickUp) {
+  public Food(int foodLevelPoint,String name, char displayChar, boolean portable,double percentPickUp,Integer ecopoints) {
     super(name, displayChar, portable);
     this.foodLevelPoint = foodLevelPoint;
     this.percentPickUp = percentPickUp;
+    this.ecopoints = ecopoints;
   }
 
   /**
@@ -52,6 +55,14 @@ public abstract class Food extends Item {
    */
   public int getFoodLevelPoint() {
     return foodLevelPoint;
+  }
+
+  /**
+   * Simply Getting for adding onto to current ecopoints balance.
+   * @return Integer Value of ecopoints
+   */
+  public int getEcopoints() {
+    return ecopoints;
   }
 }
 

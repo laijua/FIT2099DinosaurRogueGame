@@ -18,7 +18,7 @@ public class Egg extends Food {
      * @param parentDinosaur a parent (not super class) of the egg
      */
     public Egg(Dinosaur parentDinosaur) {
-        super(10, "egg", 'E', true);
+        super(10, "egg", 'E', true, parentDinosaur.getEcopoints());
         addCapability(GameCapability.CARNIVOREEDIBLE);
         this.dinosaurToHatch = parentDinosaur.getClass();
     }
@@ -58,7 +58,7 @@ public class Egg extends Food {
         eggAge ++;
         if (eggAge >= HATCHAGE && !currentLocation.containsAnActor()){
             System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
-            ((GameMapModified)currentLocation.map()).increaseEcopoints(dinosaurToHatch==Allosaur.class?1000:100);
+            ((GameMapModified)currentLocation.map()).increaseEcopoints(this.getEcopoints());
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);
         }
