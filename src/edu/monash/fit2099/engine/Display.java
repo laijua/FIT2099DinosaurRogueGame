@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Display  {
 
-	private Scanner keyboard = new Scanner(System.in);
+	protected Scanner keyboard = new Scanner(System.in);
 
 	/**
 	 * Display a displayable object.

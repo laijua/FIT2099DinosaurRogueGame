@@ -65,10 +65,9 @@ public class Player extends Actor {
 				}
 			}
 		}
-		// is player next to vending machine
 
 
-		//actions.get()
+		actions.add(new ModeAction(GameCapability.QUITMODE));
 
 		return menu.showMenu(this, actions, display);
 	}

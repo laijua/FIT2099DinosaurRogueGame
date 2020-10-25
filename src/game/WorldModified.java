@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.Menu;
 import edu.monash.fit2099.engine.World;
 import java.util.ArrayList;
 
@@ -80,9 +81,6 @@ public class WorldModified extends World {
       actions.add(new MoveMapAction(this,false));
     }
 
-
-
-
     Action action = actor.playTurn(actions, lastActionMap.get(actor), map, display);
     if (action instanceof HarvestAction){
       ecopoints.addEcopoints(1);
@@ -117,24 +115,21 @@ public class WorldModified extends World {
       lastActionMap.put(actor, new DoNothingAction());
     }
 
-    // This loop is basically the whole game
-    while (stillRunning()) {
-      System.out.println("Ecopoints Balance: "+ecopoints.getEcopoints());
-      GameMap playersMap = actorLocations.locationOf(player).map();
-      playersMap.draw(display);
 
-      // Process all the actors.
-      for (Actor actor : actorLocations) {
-        if (stillRunning())
-          processActorTurn(actor);
+    boolean loop = true;
+    while (loop){
+      // If its not running and second time round the player is removed then reread it back fresh state
+      if (!stillRunning()){
+        Actor player = new Player("Player", '@', 100);
+        addPlayer(player, getGameMap().get(1).at(9, 0));
+        lastActionMap.put(player, new DoNothingAction());
       }
-
-      // Tick over all the maps. For the map stuff.
-      for (GameMap gameMap : gameMaps) {
-        gameMap.tick();
-      }
-
+      String end = startMenu();
+      if (end.equals("Q"))
+        loop = false;
+      System.out.println("\n\n\n\n\n New Game?");
     }
+
     display.println(endGameMessage());
   }
   /**
@@ -144,4 +139,95 @@ public class WorldModified extends World {
   public ArrayList<GameMap> getGameMap() {
     return this.gameMaps;
   }
+
+  /**
+   * SandBox Mode the same code as previously just inside a function to make it cleaner
+   */
+  public void sandBoxMode() {
+    while (stillRunning()) {
+      System.out.println("Ecopoints Balance: " + ecopoints.getEcopoints());
+      GameMap playersMap = actorLocations.locationOf(player).map();
+      playersMap.draw(display);
+
+      // Process all the actors.
+      for (Actor actor : actorLocations) {
+        if (stillRunning()) {
+          processActorTurn(actor);
+        }
+      }
+
+      // Tick over all the maps. For the map stuff.
+      for (GameMap gameMap : gameMaps) {
+        gameMap.tick();
+      }
+
+    }
+
+  }
+  /**
+   * challenge Mode the same code as previously just inside a function to make it cleaner
+   */
+  public void challengeMode() {
+   // Grab eco points by the user and set balance
+    System.out.println("How many ecopoints needed to win:");
+   int ecoBalanceNeeded = ((DisplayModified)display).readInt();
+//   ecopoints.addEcopoints(-ecopoints.getEcopoints());
+//   ecopoints.addEcopoints(ecobalance);
+   // Grab max amount of rounds
+    System.out.println("How many rounds played for?");
+    int maxroundscounter = ((DisplayModified)display).readInt();
+
+    int round_counter = 0;
+   // Grab How many turns there are in game
+    while (stillRunning()) {
+      GameMap playersMap = actorLocations.locationOf(player).map();
+      round_counter++;
+      if (round_counter >= maxroundscounter+1){
+        System.out.println("\n\n\n\n\n");
+        if (ecopoints.getEcopoints() > ecoBalanceNeeded){
+          for (int i = 0; i <5 ; i++)
+          System.out.println("YAY PLAYER WINS");
+        }else {
+          for (int i = 0; i <5 ; i++)
+          System.out.println("NOO DID NOT GET ENOUGH ECOPOINTS WITH" + maxroundscounter +" turns.");
+        }
+        // gets rid of player so games finish
+        playersMap.removeActor(player);
+        continue;
+      }
+      playersMap.draw(display);
+      System.out.println("Ecopoints Balance: " + ecopoints.getEcopoints());
+
+      // Process all the actors.
+      for (Actor actor : actorLocations) {
+        if (stillRunning()) {
+          processActorTurn(actor);
+        }
+      }
+
+      // Tick over all the maps. For the map stuff.
+      for (GameMap gameMap : gameMaps) {
+        gameMap.tick();
+      }
+
+    }
+
+  }
+  public String startMenu() {
+    // Give player the option to choose whether to play sandbox mode or Sandbox mode
+    // Give player the option to choose whether to play sandbox mode or Sandbox mode
+    Menu startMenu = new Menu();
+    Actions actions = new Actions();
+    actions.add(new ModeAction(GameCapability.SANDBOXMODE));
+    actions.add(new ModeAction(GameCapability.CHALLENGEMODE));
+    actions.add(new ModeAction(GameCapability.QUITMODE));
+    Action mode = startMenu.showMenu(player, actions, display);
+    if (mode.execute(null, null).equals("C")) {
+      challengeMode();
+    } else if (mode.execute(null, null).equals("S")) {
+      sandBoxMode();
+    }
+    return mode.execute(null, null);
+  }
+
 }

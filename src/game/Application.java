@@ -17,7 +17,7 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		WorldModified world = new WorldModified(new Display());
+		WorldModified world = new WorldModified(new DisplayModified());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(),new Grass());
 		
