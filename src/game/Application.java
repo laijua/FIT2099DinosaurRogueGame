@@ -19,7 +19,7 @@ public class Application {
 
 		WorldModified world = new WorldModified(new DisplayModified());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(),new Grass());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(),new Grass(),new Water());
 		
 		List<String> map = Arrays.asList(
 		"................................................................................",
