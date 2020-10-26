@@ -87,8 +87,8 @@ public class Application {
 		gameMap.at(27,12).setGround(new VendingMachine());
 		gameMap.at(54,13).setGround(new VendingMachine());
 
-		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 50, true));
-		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 50, false));
+		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 50, true, 50));
+		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 50, false, 50));
 
 
 

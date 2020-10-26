@@ -34,9 +34,9 @@ public class VendingMachine extends Ground {
     Actions actions = new Actions();
     if (actor instanceof Player) {
       HashMap<Item, Integer> prices = new HashMap<>();
-      prices.put(new Egg(new Allosaur("Allosaur", 10, 1, Math.random() < 0.5 ? true : false)), 1000);
+      prices.put(new Egg(new Allosaur("Allosaur", 10, 1, Math.random() < 0.5 ? true : false, 50)), 1000);
       prices
-          .put(new Egg(new Stegosaur("Stegosaur", 10, 1, Math.random() < 0.5 ? true : false)), 200);
+          .put(new Egg(new Stegosaur("Stegosaur", 10, 1, Math.random() < 0.5 ? true : false, 50)), 200);
       prices.put(new VegetarianMealKit(100, "VegetarianMealKit", 'M', true), 100);
       prices.put(new CarnivoreMealKit(100, "CarnivoreMealKit", 'M', true), 500);
       prices.put(new Hay(), 20);
