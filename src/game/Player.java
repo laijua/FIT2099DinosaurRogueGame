@@ -55,7 +55,9 @@ public class Player extends Actor {
 				for (int j = 0; j<map.locationOf(this).getExits().size(); j++){
 					Location neighbour = map.locationOf(this).getExits().get(j).getDestination();
 					if(neighbour.containsAnActor()){
-						if (neighbour.getActor() instanceof Dinosaur && this.getInventory().get(i).hasCapability(((Dinosaur)neighbour.getActor()).getEdibleType())){
+						Dinosaur dinosaur = (Dinosaur)neighbour.getActor();
+						for(Enum<?> edibleType : dinosaur.getEdibleType())
+						if (neighbour.getActor() instanceof Dinosaur && this.getInventory().get(i).hasCapability((edibleType))){
 							actions.add(new FeedAction((Food)this.getInventory().get(i), (Dinosaur) neighbour.getActor()));
 						}
 //						else if (map.locationOf(this).getExits().get(j).getDestination().getActor() instanceof Stegosaur){

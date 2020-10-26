@@ -9,12 +9,13 @@ import java.util.ArrayList;
  */
 public abstract class Dinosaur extends Actor {
     private int foodLevel;
+    private int thirstLevel;
     private int turnAge;
     private boolean adult = false;
     private boolean male;
     private boolean pregnant = false;
     private int pregnantCounter = 0;
-    private Enum<?> edibleType;
+    private ArrayList<Enum<?>> edibleType;
     private int unconsciousTurns = 0;
     private boolean unconscious = false;
     private ArrayList<Behaviour> behaviour;
@@ -31,12 +32,19 @@ public abstract class Dinosaur extends Actor {
      * @param edibleType  Enum to determine what dinosaur can eat
      * @param displayChar the display character on the console for the dinosaur
      */
-    public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, Enum<?> edibleType, char displayChar, int ecopoints) {
+    public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, ArrayList<Enum<?>> edibleType, char displayChar, int ecopoints,
+                    int thirstLevel) {
         super(name, displayChar, 100);
         if (foodLevel < 0) {
             throw new ArithmeticException("foodLevel cant be below 0");
         }
         if (foodLevel > 100) {
+            throw new ArithmeticException("foodLevel cant be above 100");
+        }
+        if (thirstLevel < 0) {
+            throw new ArithmeticException("foodLevel cant be below 0");
+        }
+        if (thirstLevel > 100) {
             throw new ArithmeticException("foodLevel cant be above 100");
         }
         if (turnAge < 0) {
@@ -52,6 +60,7 @@ public abstract class Dinosaur extends Actor {
         this.behaviour = behaviour;
         this.edibleType = edibleType;
         this.ecopoints = ecopoints;
+        this.thirstLevel = thirstLevel;
 
     }
 
@@ -92,16 +101,16 @@ public abstract class Dinosaur extends Actor {
             adult = true;
         }
 
-        if (foodLevel > 0 && unconscious) {
+        if (foodLevel > 0 && unconscious && thirstLevel > 0) {
             unconscious = false;
             unconsciousTurns = 0;
             System.out.println(this + " at " + "(" + x + ", " + y + ") is back from being unconscious");
         }
 
         if (!unconscious) {
-
+            thirstLevel --;
             foodLevel--;
-            if (foodLevel <= 0) {
+            if (foodLevel <= 0 || thirstLevel <= 0) {
                 unconscious = true;
                 System.out.println(this + " at " + "(" + x + ", " + y + ") is unconscious");
             }
@@ -173,8 +182,12 @@ public abstract class Dinosaur extends Actor {
      *
      * @return Enum representing the capability of type of food the dinosaur can eat
      */
-    public Enum<?> getEdibleType() {
+    public ArrayList<Enum<?>> getEdibleType() {
         return edibleType;
+    }
+
+    public boolean containsEdible(Enum<?> edibleType){
+        return this.edibleType.contains(edibleType);
     }
 
     /**
@@ -210,5 +223,17 @@ public abstract class Dinosaur extends Actor {
      */
     public int getEcopoints() {
         return ecopoints;
+    }
+
+
+    public int getThirstLevel() {
+        return thirstLevel;
+    }
+
+    public void increaseThirstLevel() {
+        this.thirstLevel += 10;
+        if (this.thirstLevel > 100) {
+            this.thirstLevel = 100;
+        }
     }
 }

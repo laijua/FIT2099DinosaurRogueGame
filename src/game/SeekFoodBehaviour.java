@@ -6,6 +6,11 @@ import edu.monash.fit2099.engine.*;
  * Behaviour for finding food
  */
 public class SeekFoodBehaviour extends CommonStuffBehaviour {
+    final int LEVEL = 30;
+    final int GRASSFOODLEVEL = 5;
+
+
+
     /**
      * Method to determine what to do when finding food
      * @param actor the Actor acting
@@ -16,9 +21,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur dinosaur = (Dinosaur) actor;
 
-        final int HUNGRYFOODLEVEL = 30;
-        final int GRASSFOODLEVEL = 5;
-        if (dinosaur.getFoodLevel() < HUNGRYFOODLEVEL) {
+        if (dinosaur.getFoodLevel() < LEVEL) {
             System.out.println(dinosaur + " at " + "(" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") is getting hungry!");
             Location dinosaurLocation = map.locationOf(actor);
             int dinoX = dinosaurLocation.x();
@@ -26,7 +29,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
 
             // grazes on grass that it is on top of
 //            if (dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
-            if (dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
+            if (dinosaur.containsEdible(GameCapability.HERBIVOREEDIBLE)) {
                 if (dinosaurLocation.getGround() instanceof Grass) {
                     dinosaurLocation.setGround(new Dirt());
                     dinosaur.increaseFoodLevel(GRASSFOODLEVEL);
@@ -43,7 +46,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                         for (Item items : location.getItems()) {
                             if (items instanceof Food) {
                                 Food food = (Food) items;
-                                if (food.hasCapability(dinosaur.getEdibleType())) {
+                                if (food.canBeEaten(dinosaur.getEdibleType())) {
                                     boolean canEat = true;
                                     if (food instanceof Egg) {
                                         Egg egg = (Egg) food;
@@ -80,7 +83,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                             }
                         }
                         // moves towards grass
-                        if (location.getGround() instanceof Grass && dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
+                        if (location.getGround() instanceof Grass && dinosaur.containsEdible(GameCapability.HERBIVOREEDIBLE)) {
                             int currentDistance = distance(dinosaurLocation, location);
                             for (Exit exit : dinosaurLocation.getExits()) {
                                 Location destination = exit.getDestination();
@@ -99,7 +102,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                 }
             }
             // moves towards a prey
-            if (dinosaur.getEdibleType() == GameCapability.CARNIVOREEDIBLE) {
+            if (dinosaur.containsEdible( GameCapability.CARNIVOREEDIBLE)) {
                 for (int x : dinosaurSearchRadius) {
                     for (int y : dinosaurSearchRadius) {
                         if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
