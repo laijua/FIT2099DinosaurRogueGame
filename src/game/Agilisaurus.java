@@ -15,6 +15,7 @@ public class Agilisaurus extends Dinosaur {
     private static ArrayList<Behaviour> agilisaurusBehaviour() {
         ArrayList<Behaviour> behaviours = new ArrayList<>();
         behaviours.add(new SeekFoodBehaviour());
+        behaviours.add(new ThirstBehaviour());
         behaviours.add(new BreedingBehaviour());
         behaviours.add(new AttackBehaviour());
         behaviours.add(new WanderBehaviour());
