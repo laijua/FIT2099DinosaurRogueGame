@@ -28,7 +28,6 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
             int dinoY = dinosaurLocation.y();
 
             // grazes on grass that it is on top of
-//            if (dinosaur.getEdibleType() == GameCapability.HERBIVOREEDIBLE) {
             if (dinosaur.containsEdible(GameCapability.HERBIVOREEDIBLE)) {
                 if (dinosaurLocation.getGround() instanceof Grass) {
                     dinosaurLocation.setGround(new Dirt());
