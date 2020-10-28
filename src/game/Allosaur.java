@@ -18,7 +18,9 @@ public class Allosaur extends Dinosaur {
      * @param male      Boolean to tell if Allosaur is male or not
      */
     public Allosaur(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
-        super(name, foodLevel, turnAge, male, allosaurBehaviour(), allosaurEdibleType(), 'A', 1000, thirstLevel, 40);
+        super(name, foodLevel, turnAge, male, allosaurBehaviour(), allosaurEdibleType(), 'A', 1000, thirstLevel, 40, GameCapability.TIERONEATTACKABLE);
+        addCapability(GameCapability.TIERONEATTACKABLE);
+        addCapability(GameCapability.CARNIVOREEDIBLE);
     }
 
     /**
@@ -39,6 +41,12 @@ public class Allosaur extends Dinosaur {
     private static ArrayList<Enum<?>> allosaurEdibleType() {
         ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
         edibleTypes.add(GameCapability.CARNIVOREEDIBLE);
+        return edibleTypes;
+    }
+
+    private static ArrayList<Enum<?>> canAttackTier() {
+        ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
+        edibleTypes.add(GameCapability.TIERONEATTACKABLE);
         return edibleTypes;
     }
 

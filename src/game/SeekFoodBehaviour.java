@@ -110,7 +110,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
                             if (location.containsAnActor()) {
                                 if (location.getActor() instanceof Dinosaur) {
                                     Dinosaur target = (Dinosaur) location.getActor();
-                                    if (target.hasCapability(GameCapability.CARNIVOREATTACKABLE)) {
+                                    if (target.hasCapability(GameCapability.TIERONEATTACKABLE)) {
                                         return new FollowBehaviour(target).getAction(actor, map);
                                     }
                                 }

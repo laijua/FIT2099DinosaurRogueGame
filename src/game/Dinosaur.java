@@ -21,6 +21,7 @@ public abstract class Dinosaur extends Actor {
     private ArrayList<Behaviour> behaviour;
     private int ecopoints;
     private int foodValue;
+    private Enum<?> canAttackTier;
 
     /**
      * Constructor.
@@ -34,7 +35,8 @@ public abstract class Dinosaur extends Actor {
      * @param displayChar the display character on the console for the dinosaur
      */
     public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, ArrayList<Enum<?>> edibleType, char displayChar, int ecopoints,
-                    int thirstLevel, int foodValue) {
+                    int thirstLevel, int foodValue, Enum<?> canAttackTier)
+    {
         super(name, displayChar, 100);
         if (foodLevel < 0) {
             throw new ArithmeticException("foodLevel cant be below 0");
@@ -66,6 +68,7 @@ public abstract class Dinosaur extends Actor {
         this.ecopoints = ecopoints;
         this.thirstLevel = thirstLevel;
         this.foodValue = foodValue;
+        this.canAttackTier = canAttackTier;
 
     }
 
@@ -113,7 +116,7 @@ public abstract class Dinosaur extends Actor {
         }
 
         if (!unconscious) {
-            thirstLevel --;
+            thirstLevel--;
             foodLevel--;
             if (foodLevel <= 0 || thirstLevel <= 0) {
                 unconscious = true;
@@ -191,7 +194,7 @@ public abstract class Dinosaur extends Actor {
         return edibleType;
     }
 
-    public boolean containsEdible(Enum<?> edibleType){
+    public boolean containsEdible(Enum<?> edibleType) {
         return this.edibleType.contains(edibleType);
     }
 
@@ -221,6 +224,7 @@ public abstract class Dinosaur extends Actor {
     public int getFoodLevel() {
         return foodLevel;
     }
+
     /**
      * returns the ecopoints of the dinosaur in the event of egg hatched.
      *
@@ -242,7 +246,11 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-    public int getFoodValue(){
+    public int getFoodValue() {
         return foodValue;
+    }
+
+    public Enum<?> getCanAttackTier() {
+        return canAttackTier;
     }
 }

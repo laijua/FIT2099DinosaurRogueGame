@@ -18,6 +18,7 @@ public class AttackBehaviour extends CommonStuffBehaviour {
         Location dinosaurLocation = map.locationOf(actor);
         int dinoX = dinosaurLocation.x();
         int dinoY = dinosaurLocation.y();
+        Dinosaur attacker = (Dinosaur) actor;
 
         // attacks if next to prey
         for (int x : dinosaurInteractionRadius) {
@@ -27,7 +28,7 @@ public class AttackBehaviour extends CommonStuffBehaviour {
                     if (map.isAnActorAt(location)) {
                         if (map.getActorAt(location) instanceof Dinosaur) {
                             Dinosaur target = (Dinosaur) map.getActorAt(location);
-                            if (target.hasCapability(GameCapability.CARNIVOREATTACKABLE)) {
+                            if (target.hasCapability(attacker.getCanAttackTier()) && target.getClass() != attacker.getClass()) {
                                 return new AttackAction(target);
                             }
                         }
@@ -43,7 +44,7 @@ public class AttackBehaviour extends CommonStuffBehaviour {
                     if (location.containsAnActor()) {
                         if (location.getActor() instanceof Dinosaur) {
                             Dinosaur target = (Dinosaur) location.getActor();
-                            if (target.hasCapability(GameCapability.CARNIVOREATTACKABLE)) {
+                            if (target.hasCapability(attacker.getCanAttackTier()) && target.getClass() != attacker.getClass()) {
                                 return new FollowBehaviour(target).getAction(actor, map);
                             }
                         }
