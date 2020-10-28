@@ -21,13 +21,13 @@ public class AttackBehaviour extends CommonStuffBehaviour {
 
 
         // attacks if next to prey
-        if (recursion(attacker, dinosaurLocation, 1, "attack") != null){
-            return new AttackAction(recursion(attacker, dinosaurLocation, 1, "attack"));
+        if (findDinosaur(attacker, dinosaurLocation, 1, "attack") != null){
+            return new AttackAction(findDinosaur(attacker, dinosaurLocation, 1, "attack"));
 
         }
 //         goes after a prey if any in range
-        if (recursion(attacker, dinosaurLocation, 4, "attack") != null){
-            return new FollowBehaviour(recursion(attacker, dinosaurLocation, 4, "attack")).getAction(actor, map);
+        if (findDinosaur(attacker, dinosaurLocation, 4, "attack") != null){
+            return new FollowBehaviour(findDinosaur(attacker, dinosaurLocation, 4, "attack")).getAction(actor, map);
         }
 
         return null;

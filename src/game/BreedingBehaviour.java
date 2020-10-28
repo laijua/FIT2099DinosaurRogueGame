@@ -20,12 +20,12 @@ public class BreedingBehaviour extends CommonStuffBehaviour {
             Location dinosaurLocation = map.locationOf(actor);
 
             // breed next to opposite sex dinosaur of same kind
-            if (recursion(dinosaur, dinosaurLocation, 1, "breed") != null){
-                return new BreedingAction(recursion(dinosaur, dinosaurLocation, 1, "breed"));
+            if (findDinosaur(dinosaur, dinosaurLocation, 1, "breed") != null){
+                return new BreedingAction(findDinosaur(dinosaur, dinosaurLocation, 1, "breed"));
             }
             // follow opposite sex dinosaur of same kind
-            if (recursion(dinosaur, dinosaurLocation, 4, "breed") != null){
-                return new FollowBehaviour(recursion(dinosaur, dinosaurLocation, 4, "breed")).getAction(actor, map);
+            if (findDinosaur(dinosaur, dinosaurLocation, 4, "breed") != null){
+                return new FollowBehaviour(findDinosaur(dinosaur, dinosaurLocation, 4, "breed")).getAction(actor, map);
             }
         }
         return null;

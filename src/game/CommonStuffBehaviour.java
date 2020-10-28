@@ -1,8 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Exit;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 /**
  * Abstract behaviour class that contains common data members. To be inherited by behaviour class that needs its data members.
@@ -28,7 +26,7 @@ public abstract class CommonStuffBehaviour implements Behaviour {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
-    public Actor recursion(Dinosaur dinosaur, Location location, int range, String reason) {
+    public Actor findDinosaur(Dinosaur dinosaur, Location location, int range, String reason) {
         if (location.containsAnActor()) {
             if (location.getActor() instanceof Dinosaur) {
                 Dinosaur target = (Dinosaur) location.getActor();
@@ -53,8 +51,42 @@ public abstract class CommonStuffBehaviour implements Behaviour {
         }
         if (range > 0) {
             for (Exit exits : location.getExits()) {
-                if (recursion(dinosaur, exits.getDestination(), range - 1, reason) != null) {
-                    return recursion(dinosaur, exits.getDestination(), range - 1, reason);
+                if (findDinosaur(dinosaur, exits.getDestination(), range - 1, reason) != null) {
+                    return findDinosaur(dinosaur, exits.getDestination(), range - 1, reason);
+                }
+            }
+        }
+        return null;
+    }
+
+    public Action move(Actor actor, Location here, Location there){
+
+        int currentDistance = distance(here, there);
+        for (Exit exit : here.getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.canActorEnter(actor)) {
+                int newDistance = distance(destination, there);
+                if (newDistance < currentDistance) {
+                    if (!destination.containsAnActor()) {
+                        return new MoveActorAction(destination, exit.getName());
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Exit find(Location location, int range, String reason, Exit exit) {
+        if (reason.equals("water")) {
+            if (location.getGround() instanceof Water && !location.containsAnActor()) {
+                return exit;
+            }
+        }
+
+        if (range > 0) {
+            for (Exit exits : location.getExits()) {
+                if (find( exits.getDestination(), range - 1, reason, exits) != null) {
+                    return find(exits.getDestination(), range - 1, reason, exits);
                 }
             }
         }

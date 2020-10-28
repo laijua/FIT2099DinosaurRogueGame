@@ -31,7 +31,7 @@ public class Egg extends Food {
         boolean male = Math.random()*2 == 1;
         Constructor c = dinosaurToHatch.getConstructors()[0];
         try {
-            return ((Dinosaur) c.newInstance(dinosaurToHatch.getSimpleName(), 10, 0, male));
+            return ((Dinosaur) c.newInstance(dinosaurToHatch.getSimpleName(), 10, 0, male, 50));
         }catch (Exception e){
             e.printStackTrace();
         }
