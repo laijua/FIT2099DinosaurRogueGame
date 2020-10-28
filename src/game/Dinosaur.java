@@ -19,7 +19,7 @@ public abstract class Dinosaur extends Actor {
     private int unconsciousTurns = 0;
     private boolean unconscious = false;
     private ArrayList<Behaviour> behaviour;
-    private int ecopoints = 0;
+    private int ecopoints;
     private int foodValue;
 
     /**

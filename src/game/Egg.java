@@ -14,7 +14,7 @@ public class Egg extends Food {
     private final int HATCHAGE = 7;
 
     /**
-     * constructfor for the egg
+     * constructor for for the egg
      * @param parentDinosaur a parent (not super class) of the egg
      */
     public Egg(Dinosaur parentDinosaur) {
