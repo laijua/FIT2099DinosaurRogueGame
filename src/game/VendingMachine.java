@@ -37,7 +37,9 @@ public class VendingMachine extends Ground {
       prices.put(new Egg(new Allosaur("Allosaur", 10, 1, Math.random() < 0.5 ? true : false, 50)), 1000);
       prices
           .put(new Egg(new Stegosaur("Stegosaur", 10, 1, Math.random() < 0.5 ? true : false, 50)), 200);
-      prices.put(new VegetarianMealKit(100, "VegetarianMealKit", 'M', true), 100);
+        prices.put(new Egg(new Agilisaurus("Agilisaurus", 10, 1, Math.random() < 0.5 ? true : false, 50)), 500);
+        prices.put(new Egg(new Archaeopteryx("Archaeopteryx", 10, 1, Math.random() < 0.5 ? true : false, 50)), 400);
+        prices.put(new VegetarianMealKit(100, "VegetarianMealKit", 'M', true), 100);
       prices.put(new CarnivoreMealKit(100, "CarnivoreMealKit", 'M', true), 500);
       prices.put(new Hay(), 20);
       prices.put(new Fruit("Fruit", 'F', true), 30);
