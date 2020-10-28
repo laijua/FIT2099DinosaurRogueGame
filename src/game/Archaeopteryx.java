@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class Archaeopteryx extends Dinosaur {
     public Archaeopteryx(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
-        super(name, foodLevel, turnAge, male, archaeopteryxBehaviour(), archaeopteryxEdibleType(), 'A', 1000, thirstLevel);
+        super(name, foodLevel, turnAge, male, archaeopteryxBehaviour(), archaeopteryxEdibleType(), 'C', 1000, thirstLevel, 10);
+        addCapability(GameCapability.FLY);
     }
 
     /**
@@ -27,7 +28,6 @@ public class Archaeopteryx extends Dinosaur {
     private static ArrayList<Enum<?>> archaeopteryxEdibleType() {
         ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
         edibleTypes.add(GameCapability.CARNIVOREEDIBLE);
-        edibleTypes.add(GameCapability.FLY);
         return edibleTypes;
     }
 

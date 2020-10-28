@@ -20,6 +20,7 @@ public abstract class Dinosaur extends Actor {
     private boolean unconscious = false;
     private ArrayList<Behaviour> behaviour;
     private int ecopoints = 0;
+    private int foodValue;
 
     /**
      * Constructor.
@@ -33,7 +34,7 @@ public abstract class Dinosaur extends Actor {
      * @param displayChar the display character on the console for the dinosaur
      */
     public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, ArrayList<Enum<?>> edibleType, char displayChar, int ecopoints,
-                    int thirstLevel) {
+                    int thirstLevel, int foodValue) {
         super(name, displayChar, 100);
         if (foodLevel < 0) {
             throw new ArithmeticException("foodLevel cant be below 0");
@@ -53,6 +54,9 @@ public abstract class Dinosaur extends Actor {
         if (behaviour == null) {
             throw new NullPointerException("behaviour cant be null");
         }
+        if (foodValue < 0) {
+            throw new ArithmeticException("foodLevel cant be below 0");
+        }
 
         this.foodLevel = foodLevel;
         this.turnAge = turnAge;
@@ -61,6 +65,7 @@ public abstract class Dinosaur extends Actor {
         this.edibleType = edibleType;
         this.ecopoints = ecopoints;
         this.thirstLevel = thirstLevel;
+        this.foodValue = foodValue;
 
     }
 
@@ -235,5 +240,9 @@ public abstract class Dinosaur extends Actor {
         if (this.thirstLevel > 100) {
             this.thirstLevel = 100;
         }
+    }
+
+    public int getFoodValue(){
+        return foodValue;
     }
 }

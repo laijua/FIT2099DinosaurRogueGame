@@ -15,7 +15,7 @@ public class Stegosaur extends Dinosaur {
      * @param male      boolean to determine gender of the Stegosaur
      */
     public Stegosaur(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
-        super(name, foodLevel, turnAge, male, stegosaurBehaviour(), stegosaurEdibleType(), 'S', 100, thirstLevel);
+        super(name, foodLevel, turnAge, male, stegosaurBehaviour(), stegosaurEdibleType(), 'S', 100, thirstLevel, 45);
         addCapability(GameCapability.CARNIVOREATTACKABLE);
         addCapability(GameCapability.CARNIVOREEDIBLE);
     }

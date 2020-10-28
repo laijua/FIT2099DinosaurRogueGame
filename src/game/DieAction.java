@@ -17,10 +17,11 @@ public class DieAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        Dinosaur dinosaur = (Dinosaur) actor;
         int x = map.locationOf(actor).x();
         int y = map.locationOf(actor).y();
         Location dinosaurLocation = map.locationOf(actor);
-        dinosaurLocation.addItem(new DinosaurCorpse());
+        dinosaurLocation.addItem(new DinosaurCorpse(dinosaur.getFoodLevel()));
         map.removeActor(actor);
         return actor + " at " + "(" + x + ", " + y + ") dies";
 
