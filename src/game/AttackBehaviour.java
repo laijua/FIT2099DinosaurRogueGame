@@ -11,7 +11,7 @@ public class AttackBehaviour extends CommonStuffBehaviour {
      *
      * @param actor the Actor acting
      * @param map   the GameMap containing the Actor
-     * @return An action to follow or attack a target
+     * @return An action to follow or attack a otherDinosaur
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
@@ -21,13 +21,13 @@ public class AttackBehaviour extends CommonStuffBehaviour {
 
 
         // attacks if next to prey
-        if (recursion(attacker, dinosaurLocation, 1) != null){
-            return new AttackAction(recursion(attacker, dinosaurLocation, 1));
+        if (recursion(attacker, dinosaurLocation, 1, "attack") != null){
+            return new AttackAction(recursion(attacker, dinosaurLocation, 1, "attack"));
 
         }
 //         goes after a prey if any in range
-        if (recursion(attacker, dinosaurLocation, 4) != null){
-            return new FollowBehaviour(recursion(attacker, dinosaurLocation, 4)).getAction(actor, map);
+        if (recursion(attacker, dinosaurLocation, 4, "attack") != null){
+            return new FollowBehaviour(recursion(attacker, dinosaurLocation, 4, "attack")).getAction(actor, map);
         }
 
         return null;

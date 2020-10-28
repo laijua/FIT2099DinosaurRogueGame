@@ -15,7 +15,7 @@ public abstract class CommonStuffBehaviour implements Behaviour {
     /**
      * the range a dinosaur can interact with objects and other dinosaurs
      */
-    protected int[] dinosaurInteractionRadius = {0, 1, -1};
+//    protected int[] dinosaurInteractionRadius = {0, 1, -1};
 
     /**
      * Compute the Manhattan distance between two locations.
@@ -28,19 +28,33 @@ public abstract class CommonStuffBehaviour implements Behaviour {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
-    public Actor recursion(Dinosaur dinosaur, Location location, int range) {
+    public Actor recursion(Dinosaur dinosaur, Location location, int range, String reason) {
         if (location.containsAnActor()) {
             if (location.getActor() instanceof Dinosaur) {
                 Dinosaur target = (Dinosaur) location.getActor();
-                if (target.hasCapability(dinosaur.getCanAttackTier()) && target.getClass() != dinosaur.getClass()) {
-                    return target;
+
+                if (reason.equals("attack")){
+                    if (target.hasCapability(dinosaur.getCanAttackTier()) && target.getClass() != dinosaur.getClass()) {
+                        return target;
+                    }
+                }
+
+                else if(reason.equals("breed")){
+                    if (location.getActor().getClass() == dinosaur.getClass()) {
+                        Dinosaur otherDinosaur = (Dinosaur) location.getActor();
+                        if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
+                            if (otherDinosaur.isAdult() && !otherDinosaur.isPregnant()) {
+                                return otherDinosaur;
+                            }
+                        }
+                    }
                 }
             }
         }
         if (range > 0) {
             for (Exit exits : location.getExits()) {
-                if (recursion(dinosaur, exits.getDestination(), range - 1) != null) {
-                    return recursion(dinosaur, exits.getDestination(), range - 1);
+                if (recursion(dinosaur, exits.getDestination(), range - 1, reason) != null) {
+                    return recursion(dinosaur, exits.getDestination(), range - 1, reason);
                 }
             }
         }
