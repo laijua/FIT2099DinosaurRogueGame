@@ -32,24 +32,5 @@ public class AttackBehaviour extends CommonStuffBehaviour {
 
         return null;
     }
-
-    public Actor recursion(Dinosaur dinosaur, Location location, int range) {
-        if (location.containsAnActor()) {
-            if (location.getActor() instanceof Dinosaur) {
-                Dinosaur target = (Dinosaur) location.getActor();
-                if (target.hasCapability(dinosaur.getCanAttackTier()) && target.getClass() != dinosaur.getClass()) {
-                    return target;
-                }
-            }
-        }
-        if (range > 0) {
-            for (Exit exits : location.getExits()) {
-                if (recursion(dinosaur, exits.getDestination(), range - 1) != null) {
-                    return recursion(dinosaur, exits.getDestination(), range - 1);
-                }
-            }
-        }
-        return null;
-    }
 }
 
