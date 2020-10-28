@@ -8,47 +8,44 @@ import edu.monash.fit2099.engine.*;
 public class AttackBehaviour extends CommonStuffBehaviour {
     /**
      * Determines if actor should attack or follow a prey within range
+     *
      * @param actor the Actor acting
-     * @param map the GameMap containing the Actor
+     * @param map   the GameMap containing the Actor
      * @return An action to follow or attack a target
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
 
         Location dinosaurLocation = map.locationOf(actor);
-        int dinoX = dinosaurLocation.x();
-        int dinoY = dinosaurLocation.y();
         Dinosaur attacker = (Dinosaur) actor;
 
+
         // attacks if next to prey
-        for (int x : dinosaurInteractionRadius) {
-            for (int y : dinosaurInteractionRadius) {
-                if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
-                    Location location = map.at(dinoX + x, dinoY + y);
-                    if (map.isAnActorAt(location)) {
-                        if (map.getActorAt(location) instanceof Dinosaur) {
-                            Dinosaur target = (Dinosaur) map.getActorAt(location);
-                            if (target.hasCapability(attacker.getCanAttackTier()) && target.getClass() != attacker.getClass()) {
-                                return new AttackAction(target);
-                            }
-                        }
-                    }
+        if (recursion(attacker, dinosaurLocation, 1) != null){
+            return new AttackAction(recursion(attacker, dinosaurLocation, 1));
+
+        }
+//         goes after a prey if any in range
+        if (recursion(attacker, dinosaurLocation, 4) != null){
+            return new FollowBehaviour(recursion(attacker, dinosaurLocation, 4)).getAction(actor, map);
+        }
+
+        return null;
+    }
+
+    public Actor recursion(Dinosaur dinosaur, Location location, int range) {
+        if (location.containsAnActor()) {
+            if (location.getActor() instanceof Dinosaur) {
+                Dinosaur target = (Dinosaur) location.getActor();
+                if (target.hasCapability(dinosaur.getCanAttackTier()) && target.getClass() != dinosaur.getClass()) {
+                    return target;
                 }
             }
         }
-        // goes after a prey if any in range
-        for (int x : dinosaurSearchRadius) {
-            for (int y : dinosaurSearchRadius) {
-                if (dinoX + x <= 79 && dinoY + y <= 24 && dinoX + x >= 0 && dinoY + y >= 0) {
-                    Location location = map.at(dinoX + x, dinoY + y);
-                    if (location.containsAnActor()) {
-                        if (location.getActor() instanceof Dinosaur) {
-                            Dinosaur target = (Dinosaur) location.getActor();
-                            if (target.hasCapability(attacker.getCanAttackTier()) && target.getClass() != attacker.getClass()) {
-                                return new FollowBehaviour(target).getAction(actor, map);
-                            }
-                        }
-                    }
+        if (range > 0) {
+            for (Exit exits : location.getExits()) {
+                if (recursion(dinosaur, exits.getDestination(), range - 1) != null) {
+                    return recursion(dinosaur, exits.getDestination(), range - 1);
                 }
             }
         }
