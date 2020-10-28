@@ -21,7 +21,7 @@ public class DieAction extends Action {
         int x = map.locationOf(actor).x();
         int y = map.locationOf(actor).y();
         Location dinosaurLocation = map.locationOf(actor);
-        dinosaurLocation.addItem(new DinosaurCorpse(dinosaur.getFoodLevel()));
+        dinosaurLocation.addItem(new DinosaurCorpse(dinosaur.getFoodValue()));
         map.removeActor(actor);
         return actor + " at " + "(" + x + ", " + y + ") dies";
 
