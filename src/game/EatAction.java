@@ -16,9 +16,9 @@ public class EatAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (food instanceof GrassAsFood){
-            locationOfFood.setGround(new Dirt());
-        }
+//        if (food instanceof GrassAsFood){
+//            locationOfFood.setGround(new Dirt());
+//        }
         Dinosaur dinosaur = (Dinosaur) actor;
         Location dinosaurLocation = map.locationOf(actor);
         int dinoX = dinosaurLocation.x();

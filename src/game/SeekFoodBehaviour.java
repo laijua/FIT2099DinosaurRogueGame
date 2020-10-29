@@ -27,7 +27,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
             // grazes on grass that it is on top of grass and a herbivore
             if (dinosaur.containsEdible(GameCapability.HERBIVOREEDIBLE)) {
                 if (dinosaurLocation.getGround() instanceof Grass) {
-                    return new EatAction(new GrassAsFood(), dinosaurLocation);
+                    return new EatAction(new GrassAsFood(dinosaurLocation), dinosaurLocation);
 
                 }
             }

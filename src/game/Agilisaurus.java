@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Agilisaurus extends Dinosaur {
 
     public Agilisaurus(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
-        super(name, foodLevel, turnAge, male, agilisaurusBehaviour(), agilisaurusEdibleType(), 'B', 100, thirstLevel, 15, GameCapability.TIERTWOATTACKABLE);
+        super(name, foodLevel, turnAge, male, agilisaurusBehaviour(), agilisaurusEdibleType(), 'Z', 100, thirstLevel, 15, GameCapability.TIERTWOATTACKABLE);
         addCapability(GameCapability.TIERONEATTACKABLE);
         addCapability(GameCapability.TIERTWOATTACKABLE);
         addCapability(GameCapability.CARNIVOREEDIBLE);
