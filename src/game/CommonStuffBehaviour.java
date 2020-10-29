@@ -31,13 +31,11 @@ public abstract class CommonStuffBehaviour implements Behaviour {
             if (location.getActor() instanceof Dinosaur) {
                 Dinosaur target = (Dinosaur) location.getActor();
 
-                if (reason.equals("attack")){
+                if (reason.equals("attack")) {
                     if (target.hasCapability(dinosaur.getCanAttackTier()) && target.getClass() != dinosaur.getClass()) {
                         return target;
                     }
-                }
-
-                else if(reason.equals("breed")){
+                } else if (reason.equals("breed")) {
                     if (location.getActor().getClass() == dinosaur.getClass()) {
                         Dinosaur otherDinosaur = (Dinosaur) location.getActor();
                         if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
@@ -59,7 +57,7 @@ public abstract class CommonStuffBehaviour implements Behaviour {
         return null;
     }
 
-    public Action move(Actor actor, Location here, Location there){
+    public Action move(Actor actor, Location here, Location there) {
 
         int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {
@@ -76,20 +74,5 @@ public abstract class CommonStuffBehaviour implements Behaviour {
         return null;
     }
 
-    public Exit find(Location location, int range, String reason, Exit exit) {
-        if (reason.equals("water")) {
-            if (location.getGround() instanceof Water && !location.containsAnActor()) {
-                return exit;
-            }
-        }
 
-        if (range > 0) {
-            for (Exit exits : location.getExits()) {
-                if (find( exits.getDestination(), range - 1, reason, exits) != null) {
-                    return find(exits.getDestination(), range - 1, reason, exits);
-                }
-            }
-        }
-        return null;
-    }
 }

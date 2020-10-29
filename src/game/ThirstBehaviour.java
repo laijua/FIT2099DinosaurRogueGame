@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.*;
 
 
 public class ThirstBehaviour extends CommonStuffBehaviour {
-    final int LEVEL = 30;
 
 
     /**
@@ -16,21 +15,22 @@ public class ThirstBehaviour extends CommonStuffBehaviour {
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
+        final int LEVEL = 30;
+
         Dinosaur dinosaur = (Dinosaur) actor;
 
         if (dinosaur.getThirstLevel() < LEVEL) {
             System.out.println(dinosaur + " at " + "(" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") is getting thirsty!");
             Location dinosaurLocation = map.locationOf(actor);
 
-            // check if any water source in range
-            if (find(dinosaurLocation,1, "water", null) != null){
+            if (findWater(dinosaurLocation, 1,  null) != null) {
                 return new DrinkAction();
             }
 
-            if (find(dinosaurLocation,4, "water", null) != null){
+            if (findWater(dinosaurLocation, 4,  null) != null) {
 
-                Location there = find(dinosaurLocation,4, "water", null).getDestination();
-                return move ( actor,  dinosaurLocation,  there);
+                Location there = findWater(dinosaurLocation, 4,  null).getDestination();
+                return move(actor, dinosaurLocation, there);
 
             }
 
@@ -39,8 +39,20 @@ public class ThirstBehaviour extends CommonStuffBehaviour {
         return null;
     }
 
-    
+    private Exit findWater( Location location, int range, Exit exit) {
+        if (location.getGround() instanceof Water && !location.containsAnActor()) {
+            return exit;
+        }
 
+        if (range > 0) {
+            for (Exit exits : location.getExits()) {
+                if (findWater(exits.getDestination(), range - 1,  exits) != null) {
+                    return findWater(exits.getDestination(), range - 1, exits);
+                }
+            }
+        }
+        return null;
+    }
 
 }
 

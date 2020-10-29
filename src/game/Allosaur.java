@@ -44,11 +44,11 @@ public class Allosaur extends Dinosaur {
         return edibleTypes;
     }
 
-    private static ArrayList<Enum<?>> canAttackTier() {
-        ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
-        edibleTypes.add(GameCapability.TIERONEATTACKABLE);
-        return edibleTypes;
-    }
+//    private static ArrayList<Enum<?>> canAttackTier() {
+//        ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
+//        edibleTypes.add(GameCapability.TIERONEATTACKABLE);
+//        return edibleTypes;
+//    }
 
     /**
      * Returns the weapon available for the Allosaur
