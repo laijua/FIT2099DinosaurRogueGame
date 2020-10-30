@@ -107,6 +107,9 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
      * private nested class for storing food and its location
      */
     private class FoodAndLocation {
+        // no need to make private as its a nested private class and so we can access data without needing methods
+        Food food;
+        Location location;
         /**
          * Constructor
          * @param food the food
@@ -116,9 +119,6 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
             this.food = food;
             this.location = location;
         }
-
-        Food food;
-        Location location;
     }
 }
 
