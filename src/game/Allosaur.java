@@ -12,10 +12,11 @@ public class Allosaur extends Dinosaur {
     /**
      * Constructs an Allosaur
      *
-     * @param name      String to name the Allosaur
-     * @param foodLevel Int representing food level of Allosaur
-     * @param turnAge   Int representing age of Allosaur
-     * @param male      Boolean to tell if Allosaur is male or not
+     * @param name        String to name the Allosaur
+     * @param foodLevel   Int representing food level of Allosaur
+     * @param turnAge     Int representing age of Allosaur
+     * @param male        Boolean to tell if Allosaur is male or not
+     * @param thirstLevel Int representing thirst level of Allosaur
      */
     public Allosaur(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
         super(name, foodLevel, turnAge, male, allosaurBehaviour(), allosaurEdibleType(), 'A', 1000, thirstLevel, 40, GameCapability.TIERONEATTACKABLE);
@@ -38,17 +39,16 @@ public class Allosaur extends Dinosaur {
         return behaviours;
     }
 
+    /**
+     * Method to input an array list of Allosaur diet type
+     *
+     * @return an ArrayList of Enum representing edible types
+     */
     private static ArrayList<Enum<?>> allosaurEdibleType() {
         ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
         edibleTypes.add(GameCapability.CARNIVOREEDIBLE);
         return edibleTypes;
     }
-
-//    private static ArrayList<Enum<?>> canAttackTier() {
-//        ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
-//        edibleTypes.add(GameCapability.TIERONEATTACKABLE);
-//        return edibleTypes;
-//    }
 
     /**
      * Returns the weapon available for the Allosaur

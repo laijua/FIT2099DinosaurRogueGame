@@ -26,8 +26,10 @@ public class LayEggAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Location dinosaurLocation = map.locationOf(actor);
+        int dinoX = dinosaurLocation.x();
+        int dinoY = dinosaurLocation.y();
         dinosaurLocation.addItem(makeEgg());
-        return menuDescription(actor);
+        return actor + " at " + "(" + dinoX + ", " + dinoY + ") has laid an egg";
     }
 
     /**
@@ -37,7 +39,7 @@ public class LayEggAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " has laid an egg";
+        return null;
     }
 
     /**

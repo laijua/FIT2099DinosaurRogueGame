@@ -12,5 +12,7 @@ public enum GameCapability {
     FLY,
     CHALLENGEMODE,
     SANDBOXMODE,
-    QUITMODE
+    QUITMODE,
+    BREED,
+    ATTACK
 }

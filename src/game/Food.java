@@ -87,7 +87,11 @@ public abstract class Food extends Item {
         return ecopoints;
     }
 
-
+    /**
+     * method to check if food can be eaten by dinosaur
+     * @param edibleTypes the type the dinosaur eats
+     * @return true if it can be eaten, false otherwise
+     */
     public boolean canBeEaten(ArrayList<Enum<?>> edibleTypes) {
         for (Enum<?> edibleType : edibleTypes) {
             if (super.hasCapability(edibleType)) {

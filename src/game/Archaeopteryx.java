@@ -4,7 +4,20 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 
 import java.util.ArrayList;
 
+/**
+ * An Archaeopteryx, a carnivorous dinosaur.
+ */
 public class Archaeopteryx extends Dinosaur {
+    
+    /**
+     * Constructs an Archaeopteryx
+     *
+     * @param name        String to name the Archaeopteryx
+     * @param foodLevel   Int representing food level of Archaeopteryx
+     * @param turnAge     Int representing age of Archaeopteryx
+     * @param male        Boolean to tell if Archaeopteryx is male or not
+     * @param thirstLevel Int representing thirst level of Archaeopteryx
+     */
     public Archaeopteryx(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
         super(name, foodLevel, turnAge, male, archaeopteryxBehaviour(), archaeopteryxEdibleType(), 'X', 1000, thirstLevel, 10, GameCapability.TIERTWOATTACKABLE);
         addCapability(GameCapability.FLY);
@@ -28,6 +41,11 @@ public class Archaeopteryx extends Dinosaur {
         return behaviours;
     }
 
+    /**
+     * Method to input an array list of Archaeopteryx diet type
+     *
+     * @return an ArrayList of Enum representing edible types
+     */
     private static ArrayList<Enum<?>> archaeopteryxEdibleType() {
         ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
         edibleTypes.add(GameCapability.CARNIVOREEDIBLE);

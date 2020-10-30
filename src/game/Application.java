@@ -35,7 +35,7 @@ public class Application {
 		".....................................++++++.....................................",
 		"......................................+++.......................................",
 		".....................................+++........................................",
-		"................................................................................",
+		"................................~~~.............................................",
 		"............+++.................................................................",
 		".............+++++..............................................................",
 		"...............++........................................+++++..................",
@@ -87,8 +87,13 @@ public class Application {
 		gameMap.at(27,12).setGround(new VendingMachine());
 		gameMap.at(54,13).setGround(new VendingMachine());
 
-		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur",50 , 50, true, 50));
-		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50, 50, false, 50));
+//		gameMap.at(30, 13).addActor(new Archaeopteryx("1",10 , 50, true, 50));
+//		gameMap.at(30, 13).addActor(new Archaeopteryx("2",10 , 50, true, 50));
+//		gameMap.at(33, 13).addActor(new Agilisaurus("agil",10 , 50, true, 50));
+//		gameMap.at(36, 16).addActor(new Allosaur("allo",100 , 50, true, 50));
+//		gameMap.at(32, 19).addItem(new DinosaurCorpse(20));
+		gameMap.at(36, 14).addActor(new Stegosaur("Stegosaur", 70, 50, true, 100));
+		gameMap.at(33, 14).addActor(new Stegosaur("Stegosaur2", 60, 50, false, 50));
 
 
 

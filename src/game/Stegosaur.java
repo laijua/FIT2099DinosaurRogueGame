@@ -3,16 +3,17 @@ package game;
 import java.util.ArrayList;
 
 /**
- * A herbivorous dinosaur.
+ * An Stegosaur, a herbivorous dinosaur.
  */
 public class Stegosaur extends Dinosaur {
     /**
-     * Constructor for the Stegosaur
+     * Constructs an Stegosaur
      *
-     * @param name      name of the Stegosaur in String
-     * @param foodLevel food level of the Stegosaur in int
-     * @param turnAge   age of the Stegosaur in int
-     * @param male      boolean to determine gender of the Stegosaur
+     * @param name        String to name the Stegosaur
+     * @param foodLevel   Int representing food level of Stegosaur
+     * @param turnAge     Int representing age of Stegosaur
+     * @param male        Boolean to tell if Stegosaur is male or not
+     * @param thirstLevel Int representing thirst level of Stegosaur
      */
     public Stegosaur(String name, int foodLevel, int turnAge, boolean male, int thirstLevel) {
         super(name, foodLevel, turnAge, male, stegosaurBehaviour(), stegosaurEdibleType(), 'S', 100, thirstLevel, 45, GameCapability.PASSIVE);
@@ -34,6 +35,11 @@ public class Stegosaur extends Dinosaur {
         return behaviours;
     }
 
+    /**
+     * Method to input an array list of Stegosaur diet type
+     *
+     * @return an ArrayList of Enum representing edible types
+     */
     private static ArrayList<Enum<?>> stegosaurEdibleType() {
         ArrayList<Enum<?>> edibleTypes = new ArrayList<>();
         edibleTypes.add(GameCapability.HERBIVOREEDIBLE);

@@ -14,20 +14,29 @@ public abstract class CommonStuffBehaviour implements Behaviour {
      * @param b the first location
      * @return the number of steps between a and b if you only move in the four cardinal directions.
      */
-    public static int distance(Location a, Location b) {
+    private static int distance(Location a, Location b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
-    public Actor findDinosaur(Dinosaur dinosaur, Location location, int range, String reason) {
+    /**
+     * Method for finding any dinosaur in range
+     *
+     * @param dinosaur the dinosaur searching
+     * @param location the location to search from, aka the location of the dinosaur searching
+     * @param range    the range/radius the dinosaur can search
+     * @param reason   reason for searching
+     * @return dinosaur if any found
+     */
+    protected Actor findDinosaur(Dinosaur dinosaur, Location location, int range, Enum<?> reason) {
         if (location.containsAnActor()) {
             if (location.getActor() instanceof Dinosaur) {
                 Dinosaur target = (Dinosaur) location.getActor();
 
-                if (reason.equals("attack")) {
+                if (reason.equals(GameCapability.ATTACK)) {
                     if (target.hasCapability(dinosaur.getCanAttackTier()) && target.getClass() != dinosaur.getClass()) {
                         return target;
                     }
-                } else if (reason.equals("breed")) {
+                } else if (reason.equals(GameCapability.BREED)) {
                     if (location.getActor().getClass() == dinosaur.getClass()) {
                         Dinosaur otherDinosaur = (Dinosaur) location.getActor();
                         if ((otherDinosaur.isMale() && !dinosaur.isMale() || (!otherDinosaur.isMale() && dinosaur.isMale()))) {
@@ -49,7 +58,15 @@ public abstract class CommonStuffBehaviour implements Behaviour {
         return null;
     }
 
-    public Action move(Actor actor, Location here, Location there) {
+    /**
+     * Method to move an Actor
+     *
+     * @param actor Actor to be moved
+     * @param here  current location of Actor
+     * @param there new location of Actor
+     * @return instance of MoveActorAction
+     */
+    protected Action move(Actor actor, Location here, Location there) {
 
         int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {

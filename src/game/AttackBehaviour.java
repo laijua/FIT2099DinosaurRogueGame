@@ -21,13 +21,13 @@ public class AttackBehaviour extends CommonStuffBehaviour {
 
 
         // attacks if next to prey
-        if (findDinosaur(attacker, dinosaurLocation, 1, "attack") != null){
-            return new AttackAction(findDinosaur(attacker, dinosaurLocation, 1, "attack"));
+        if (findDinosaur(attacker, dinosaurLocation, 1, GameCapability.ATTACK) != null){
+            return new AttackAction(findDinosaur(attacker, dinosaurLocation, 1, GameCapability.ATTACK));
 
         }
 //         goes after a prey if any in range
-        if (findDinosaur(attacker, dinosaurLocation, 4, "attack") != null){
-            return new FollowBehaviour(findDinosaur(attacker, dinosaurLocation, 4, "attack")).getAction(actor, map);
+        if (findDinosaur(attacker, dinosaurLocation, 4, GameCapability.ATTACK) != null){
+            return new FollowBehaviour(findDinosaur(attacker, dinosaurLocation, 4, GameCapability.ATTACK)).getAction(actor, map);
         }
 
         return null;

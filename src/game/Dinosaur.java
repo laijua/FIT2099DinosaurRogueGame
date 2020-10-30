@@ -33,6 +33,10 @@ public abstract class Dinosaur extends Actor {
      * @param behaviour   arraylist of behaviours of dinosaur
      * @param edibleType  Enum to determine what dinosaur can eat
      * @param displayChar the display character on the console for the dinosaur
+     * @param ecopoints eco points value given to player if the dinosaur were to hatch
+     * @param thirstLevel the thirst level of the dinosaur
+     * @param foodValue the food value/level of the dinosaur if it was corpse
+     * @param canAttackTier what dinosaur tier level this dinosaur can be attacked by
      */
     public Dinosaur(String name, int foodLevel, int turnAge, boolean male, ArrayList<Behaviour> behaviour, ArrayList<Enum<?>> edibleType, char displayChar, int ecopoints,
                     int thirstLevel, int foodValue, Enum<?> canAttackTier)
@@ -194,6 +198,11 @@ public abstract class Dinosaur extends Actor {
         return edibleType;
     }
 
+    /**
+     * method that checks if dinosaur is herbivore, carnivore or both
+     * @param edibleType Enum representing the type of diet of dinosaur
+     * @return boolean. true if dinosaur contains the edibleType
+     */
     public boolean containsEdible(Enum<?> edibleType) {
         return this.edibleType.contains(edibleType);
     }
@@ -234,11 +243,17 @@ public abstract class Dinosaur extends Actor {
         return ecopoints;
     }
 
-
+    /**
+     * Method to return the thirst level of dinosaur
+     * @return the thirst level of dinosaur
+     */
     public int getThirstLevel() {
         return thirstLevel;
     }
 
+    /**
+     * increases the thirst level of the dinosaur
+     */
     public void increaseThirstLevel() {
         this.thirstLevel += 10;
         if (this.thirstLevel > 100) {
@@ -246,10 +261,18 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
+    /**
+     * returns the food value/level of the dinosaur if it was corpse
+     * @return
+     */
     public int getFoodValue() {
         return foodValue;
     }
 
+    /**
+     * returns enum of what dinosaur tier level this dinosaur can be attacked by
+     * @return enum of what dinosaur tier level this dinosaur can be attacked by
+     */
     public Enum<?> getCanAttackTier() {
         return canAttackTier;
     }

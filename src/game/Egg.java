@@ -57,7 +57,9 @@ public class Egg extends Food {
         super.tick(currentLocation);
         eggAge ++;
         if (eggAge >= HATCHAGE && !currentLocation.containsAnActor()){
-            System.out.println("Egg has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
+            int x = currentLocation.x();
+            int y = currentLocation.y();
+            System.out.println("Egg at " +  "(" + x + ", " + y + ") has hatched into a "+ dinosaurToHatch.getSimpleName() + "!!!");
             ((GameMapModified)currentLocation.map()).increaseEcopoints(this.getEcopoints());
             currentLocation.addActor(hatch());
             currentLocation.removeItem(this);

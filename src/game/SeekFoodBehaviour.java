@@ -9,7 +9,7 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
 
 
     /**
-     * Method to determine what to do when finding food
+     * Method for finding food and determining what to do when finding food
      *
      * @param actor the Actor acting
      * @param map   the GameMap containing the Actor
@@ -17,10 +17,10 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        final int LEVEL = 30;
+        final int HUNGERLEVEL = 30;
         Dinosaur dinosaur = (Dinosaur) actor;
 
-        if (dinosaur.getFoodLevel() < LEVEL) {
+        if (dinosaur.getFoodLevel() < HUNGERLEVEL) {
             System.out.println(dinosaur + " at " + "(" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") is getting hungry!");
             Location dinosaurLocation = map.locationOf(actor);
 
@@ -53,14 +53,21 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
 
             // moves towards a prey
             if (dinosaur.containsEdible(GameCapability.CARNIVOREEDIBLE)) {
-                if (findDinosaur(dinosaur, dinosaurLocation, 4, "attack") != null) {
-                    return new FollowBehaviour(findDinosaur(dinosaur, dinosaurLocation, 4, "attack")).getAction(actor, map);
+                if (findDinosaur(dinosaur, dinosaurLocation, 4, GameCapability.ATTACK) != null) {
+                    return new FollowBehaviour(findDinosaur(dinosaur, dinosaurLocation, 4, GameCapability.ATTACK)).getAction(actor, map);
                 }
             }
         }
         return null;
     }
 
+    /**
+     * Method to find food
+     * @param dinosaur the dinosaur finding food
+     * @param location current location of dinosaur finding food
+     * @param range how far the dinosaur can see when finding food
+     * @return a FoodAndLocation class which stores the food and its location
+     */
     private FoodAndLocation findFood(Dinosaur dinosaur, Location location, int range) {
         for (Item items : location.getItems()) {
             if (items instanceof Food) {
@@ -96,7 +103,15 @@ public class SeekFoodBehaviour extends CommonStuffBehaviour {
         return null;
     }
 
+    /**
+     * private nested class for storing food and its location
+     */
     private class FoodAndLocation {
+        /**
+         * Constructor
+         * @param food the food
+         * @param location the food's location
+         */
         public FoodAndLocation(Food food, Location location) {
             this.food = food;
             this.location = location;

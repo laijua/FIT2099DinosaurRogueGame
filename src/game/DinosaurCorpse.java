@@ -5,7 +5,8 @@ package game;
  */
 public class DinosaurCorpse extends Food {
     /**
-     * Constructor for the food
+     * * Constructor for the food
+     * @param foodLevelPoint food level the corpse is worth, varies depending on the type of dinosaur dying
      */
     public DinosaurCorpse(int foodLevelPoint) {
         super(foodLevelPoint, "corpse", 'C', true);
