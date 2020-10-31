@@ -4,7 +4,7 @@ package game;
  * A class that holds the balance of ecopoints in which Player uses so that they can purchase stuff.
  */
 public class Ecopoints {
-  private int ecopoints =0;
+  private int ecopoints =10000000;
 
   /**
    * Method to add to the current balance, can be negative to reduce the balance and requires less code

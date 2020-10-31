@@ -145,9 +145,10 @@ public class WorldModified extends World {
    */
   public void sandBoxMode() {
     while (stillRunning()) {
-      System.out.println("Ecopoints Balance: " + ecopoints.getEcopoints());
+
       GameMap playersMap = actorLocations.locationOf(player).map();
       playersMap.draw(display);
+      System.out.println("Ecopoints Balance: " + ecopoints.getEcopoints());
 
       // Process all the actors.
       for (Actor actor : actorLocations) {
