@@ -51,7 +51,7 @@ public class Player extends Actor {
 
 		// Does player have food and next to dinosaur
 		for(int i = 0; i<this.getInventory().size();i++){
-			if (this.getInventory().get(i) instanceof Hay || this.getInventory().get(i) instanceof Fruit){
+			if (this.getInventory().get(i) instanceof Food){
 				for (int j = 0; j<map.locationOf(this).getExits().size(); j++){
 					Location neighbour = map.locationOf(this).getExits().get(j).getDestination();
 					if(neighbour.containsAnActor()){
