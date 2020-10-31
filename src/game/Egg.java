@@ -18,7 +18,7 @@ public class Egg extends Food {
      * @param parentDinosaur a parent (not super class) of the egg
      */
     public Egg(Dinosaur parentDinosaur) {
-        super(10, "egg", 'E', true, parentDinosaur.getEcopoints());
+        super(10, parentDinosaur.getClass().getSimpleName() + " egg", 'E', true, parentDinosaur.getEcopoints());
         addCapability(GameCapability.CARNIVOREEDIBLE);
         this.dinosaurToHatch = parentDinosaur.getClass();
     }
