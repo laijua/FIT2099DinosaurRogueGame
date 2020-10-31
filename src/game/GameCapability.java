@@ -13,6 +13,6 @@ public enum GameCapability {
     CHALLENGEMODE,
     SANDBOXMODE,
     QUITMODE,
-    BREED,
-    ATTACK
+    BREED, // used for reason to breed in findDinosaur
+    ATTACK // used for reason to attack in findDinosaur
 }
