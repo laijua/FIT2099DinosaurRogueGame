@@ -125,6 +125,7 @@ public abstract class Dinosaur extends Actor {
             if (foodLevel <= 0 || thirstLevel <= 0) {
                 unconscious = true;
                 System.out.println(this + " at " + "(" + x + ", " + y + ") is unconscious");
+                return new DoNothingAction();
             }
 
 
