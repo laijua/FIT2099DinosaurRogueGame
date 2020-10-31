@@ -14,7 +14,7 @@ public abstract class CommonStuffBehaviour implements Behaviour {
      * @param b the first location
      * @return the number of steps between a and b if you only move in the four cardinal directions.
      */
-    private static int distance(Location a, Location b) {
+    private int distance(Location a, Location b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
