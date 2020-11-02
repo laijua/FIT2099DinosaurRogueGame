@@ -92,7 +92,7 @@ public class Application {
 
 		// test cases remove at the end
 		gameMap.at(10,0).setGround(new VendingMachine());
-	//	gameMap.at(10, 1).addActor(new Stegosaur("Stegosaur",50 , 50, true, 50));
+		gameMap.at(10, 1).addActor(new Stegosaur("Stegosaur",50 , 50, true, 50));
 
 		world.run();
 	}

@@ -48,27 +48,6 @@ public class Player extends Actor {
 			actions.add(new HarvestAction(hay));
 		}
 
-
-		// Does player have food and next to dinosaur
-		for(int i = 0; i<this.getInventory().size();i++){
-			if (this.getInventory().get(i) instanceof Food){
-				for (int j = 0; j<map.locationOf(this).getExits().size(); j++){
-					Location neighbour = map.locationOf(this).getExits().get(j).getDestination();
-					if(neighbour.containsAnActor()){
-						Dinosaur dinosaur = (Dinosaur)neighbour.getActor();
-						for(Enum<?> edibleType : dinosaur.getEdibleType())
-						if (neighbour.getActor() instanceof Dinosaur && this.getInventory().get(i).hasCapability((edibleType))){
-							actions.add(new FeedAction((Food)this.getInventory().get(i), (Dinosaur) neighbour.getActor()));
-						}
-//						else if (map.locationOf(this).getExits().get(j).getDestination().getActor() instanceof Stegosaur){
-//							continue;
-//						}
-					}
-				}
-			}
-		}
-
-
 		actions.add(new ModeAction(GameCapability.QUITMODE));
 
 		return menu.showMenu(this, actions, display);

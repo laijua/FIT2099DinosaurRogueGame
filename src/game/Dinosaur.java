@@ -86,7 +86,16 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(this));
+        Actions actions = new Actions();
+        actions.add(new AttackAction(this));
+        for(Enum<?> edibletype :getEdibleType()){
+            for(int i = 0; i < otherActor.getInventory().size();i++){
+                if(otherActor.getInventory().get(i).hasCapability(edibletype) && otherActor.getInventory().get(i) instanceof Food){
+                    actions.add(new FeedAction((Food)otherActor.getInventory().get(i),this));
+                }
+            }
+        }
+        return actions;
     }
 
 
