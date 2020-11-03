@@ -48,7 +48,7 @@ public class Player extends Actor {
 			actions.add(new HarvestAction(hay));
 		}
 
-		actions.add(new ModeAction(GameCapability.QUITMODE));
+
 
 		return menu.showMenu(this, actions, display);
 	}

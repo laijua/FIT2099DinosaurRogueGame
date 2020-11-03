@@ -80,6 +80,8 @@ public class WorldModified extends World {
     }else if (actor instanceof Player && here.y() == 24 && ((GameMapModified)map).isTopMap()){
       actions.add(new MoveMapAction(this,false));
     }
+    // add quit mode option
+    actions.add(new ModeAction(GameCapability.QUITMODE));
 
     Action action = actor.playTurn(actions, lastActionMap.get(actor), map, display);
     if (action instanceof HarvestAction){
@@ -214,9 +216,12 @@ public class WorldModified extends World {
     }
 
   }
+  /**
+    Start menu which users gets to decided whether or not they want to play sandbox mode
+   or  challenge mode
+   */
   public String startMenu() {
-    // Give player the option to choose whether to play sandbox mode or Sandbox mode
-    // Give player the option to choose whether to play sandbox mode or Sandbox mode
+
     Menu startMenu = new Menu();
     Actions actions = new Actions();
     actions.add(new ModeAction(GameCapability.SANDBOXMODE));
