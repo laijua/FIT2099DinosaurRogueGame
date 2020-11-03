@@ -2,8 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.Display;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class DisplayModified extends Display {
+  private Scanner keyboard = new Scanner(System.in);
+
   public int readInt() {
     boolean notfoundInt = true;
     while (notfoundInt) {
